@@ -1,5 +1,5 @@
 import '../styles/globals.css'
-import Header from "./Header"
+import Navbar from '../components/Navbar'
 
 export default function RouteLayout({
     children,
@@ -12,8 +12,8 @@ export default function RouteLayout({
                 <title>WeLight</title>
             </head>
             <body>
-                <Header />
-                <div className='px-10 flex'>
+                <Navbar />
+                <div>
                     {children}
                 </div>
 
