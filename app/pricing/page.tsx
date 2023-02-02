@@ -4,24 +4,24 @@ import React from "react";
 import {Box, Button, Stack} from "@mui/material";
 
 
-const pricing_info = [
+const pricingInfo = [
     {
         title: "FREE",
         cost: 0,
         freq: "Life time",
-        link: "",
+        link: "www.FREE.com",
         highlighted: false
     },{
         title: "PREMIUM",
         cost: 40,
         freq: "Per month",
-        link: "",
+        link: "www.PREMIUM.com",
         highlighted: true
     },{
         title: "ENTERPRISE",
         cost: 100,
         freq: "Life time",
-        link: "",
+        link: "www.ENTERPRISE.com",
         highlighted: false
     }
 ]
@@ -29,6 +29,11 @@ const pricing_info = [
 
 export default function Pricing() {
 
+
+    const handleSubscriptionClick = (event: any) => {
+        let pricingIndex = event.target.id
+        console.log(pricingInfo[pricingIndex].link)
+    }
 
     return (
         <div className="bg-white dark:bg-gray-900">
@@ -41,7 +46,7 @@ export default function Pricing() {
 
                 <Stack className="grid grid-cols-1 gap-8 mt-6 xl:mt-12 xl:gap-12 md:grid-cols-2 lg:grid-cols-3" direction="row" spacing={2}>
                     {
-                        pricing_info.map((p, index) => {
+                        pricingInfo.map((p, index) => {
                             return (
                                 <Box
                                     className={
@@ -62,11 +67,15 @@ export default function Pricing() {
                                     <p className="font-medium text-gray-500 dark:text-gray-300">
                                         {p.freq}
                                     </p>
-                                    <Button className={
-                                        !p.highlighted ?
-                                            "w-full px-4 py-2 mt-10 tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-80"
-                                            : "w-full px-4 py-2 mt-10 tracking-wide text-blue-500 capitalize transition-colors duration-300 transform bg-white rounded-md hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:ring focus:ring-gray-200 focus:ring-opacity-80"
-                                    }>
+                                    <Button
+                                        id={index.toString()}
+                                        className={
+                                            !p.highlighted ?
+                                                "w-full px-4 py-2 mt-10 tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-80"
+                                                : "w-full px-4 py-2 mt-10 tracking-wide text-blue-500 capitalize transition-colors duration-300 transform bg-white rounded-md hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:ring focus:ring-gray-200 focus:ring-opacity-80"
+                                        }
+                                        onClick={handleSubscriptionClick}
+                                    >
                                         Start Now
                                     </Button>
                                 </Box>
