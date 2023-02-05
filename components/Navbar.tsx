@@ -12,8 +12,8 @@ export default function Navbar() {
                     <Link href="/pricing" className="btn btn-ghost normal-case text-lg">Pricing</Link>
                     <Link href="/about" className="btn btn-ghost normal-case text-lg">About Us</Link>
                     <div className="flex-1">
-                        <Link href="/" className="btn btn-ghost normal-case text-lg">Login</Link>
-                        <Link href="/" className="btn btn-ghost normal-case text-lg">Sign Up</Link>
+                        <Link href="/login" className="btn btn-ghost normal-case text-lg">Login</Link>
+                        <Link href="/signup" className="btn btn-ghost normal-case text-lg">Sign Up</Link>
                     </div>
                 </ul>
             </div>
