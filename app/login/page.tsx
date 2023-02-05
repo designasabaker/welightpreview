@@ -27,7 +27,7 @@ export default function Login() {
         }
     }
     return (
-        <div className="bg-white dark:bg-gray-900">
+        <div>
             <Box sx={{
                 top: '200px',
                 width: '50%',
@@ -36,17 +36,23 @@ export default function Login() {
                 <h1 className="text-3xl font-semibold text-center text-gray-800 capitalize lg:text-4xl dark:text-white">
                     Sign In
                 </h1>
-                <Stack spacing={4}>
+                <Stack spacing={4} sx={{
+                    padding: 10,
+                    margin: 'auto',
+                    maxWidth: 500
+                }}>
+                    <p>Username</p>
                     <TextField
                         required
+                        variant="standard"
                         id="username-text-field"
-                        label="Username"
                         onChange={handleTextFieldChange}
                     />
+                    <p>Password</p>
                     <TextField
                         required
+                        variant="standard"
                         id="password-text-field"
-                        label="Password"
                         onChange={handleTextFieldChange}
                     />
                     <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
