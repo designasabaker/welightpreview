@@ -1,7 +1,168 @@
-import React from "react";
+'use client'
 
-export default function SignUp() {
+import React from "react";
+import {Avatar, Box, Button, FilledInput, FormControl, Grid, IconButton, InputAdornment, InputLabel, Stack, TextField} from "@mui/material";
+import {deepOrange} from "@mui/material/colors";
+import PhotoCamera from '@mui/icons-material/PhotoCamera';
+import {width} from "@mui/system";
+import {Visibility, VisibilityOff} from "@mui/icons-material";
+
+const formItems = [
+    {
+        name: 'Email',
+        ref: 'email'
+    },{
+        name: 'Password',
+        ref: 'password'
+    },{
+        name: 'Re-enter password',
+        ref: 'password2'
+    },{
+        name: 'Verification code',
+        ref: 'verification'
+    },
+]
+
+
+export default function Signup() {
+    let [password, setPassword] = React.useState("")
+    let [password2, setPassword2] = React.useState("")
+    let [email, setEmail] = React.useState("")
+    let [verification, setVerification] = React.useState("")
+
+    const [showPassword, setShowPassword] = React.useState(false);
+
+    const handleClickShowPassword = () => setShowPassword((show) => !show);
+    const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+    };
+    const handleRegister = () => {
+        let credential = {
+            email,
+            password
+        }
+        console.log(credential)  // pass the credential to api
+    };
+
+    const handleTextFieldChange = (event: { target: {
+            value: string;
+            id: any; }; }) => {
+        switch (event.target.id) {
+            case "email-text-field":
+                setEmail(event.target.value)
+                break
+            case "password-text-field":
+                setPassword(event.target.value)
+                break
+            case "password2-text-field":
+                setPassword2(event.target.value)
+                break
+            case "verification-text-field":
+                setVerification(event.target.value)
+                break
+            default:
+                console.error("Invalid handling of textfield")
+        }
+    }
+
+    const handleAvatarUpload = () => {
+
+    }
+
+    const handleEmailVerification = () => {
+
+    };
     return (
-        <div>SignUp</div>
+        <div>
+            <Box
+                justifyContent="center"
+                alignItems='center'
+                sx={{
+                top: 100,
+                width: '60%',
+                margin: 'auto'
+            }}>
+                <h1 className="text-3xl font-semibold text-center text-gray-800 capitalize lg:text-4xl dark:text-white">
+                    Register
+                </h1>
+                <Grid container spacing={2} sx={{
+                    boarder: 20,
+                    marginTop: 5
+                }}>
+                    <Grid item={true} xs={8}>
+                        <Stack
+                            justifyContent="center"
+                            alignItems="center"
+                            spacing={2}
+                            sx={{
+                            margin: 'auto'
+                        }}>
+                            {
+                                formItems.map((item, index) => {
+                                    let isPassword = item.ref === "password" || item.ref === "password2"
+                                    return (
+                                        <Box key={index} sx={{width: 300}}>
+
+                                            <p>{item.name}</p>
+                                            <TextField
+                                                required
+                                                type={isPassword ? "password" : "text"}
+                                                variant="standard"
+                                                id={item.ref + "-text-field"}
+                                                onChange={handleTextFieldChange}
+
+                                            />
+                                            <Button
+                                                hidden={item.ref !== 'email'}
+                                                variant="text"
+                                                size="small"
+                                                onClick={handleEmailVerification}
+                                                sx={{
+                                                margin: 'auto'
+                                            }}
+                                            >
+                                                Verify
+                                            </Button>
+                                        </Box>
+                                    )
+                                })
+                            }
+
+                        </Stack>
+                    </Grid>
+                    <Grid item={true} xs={4} sx={{
+                        margin: 'auto',
+                        textAlign: 'center'
+                    }}>
+                        <p>Choose your avatar</p>
+                        <Avatar sx={{ margin: 'auto', marginTop: 3, marginBottom: 2 }} variant="square">
+                            N
+                        </Avatar>
+                        <IconButton
+                            color="primary"
+                            aria-label="upload picture"
+                            component="label"
+                            onClick={handleAvatarUpload}
+                        >
+                            <PhotoCamera />
+                        </IconButton>
+                    </Grid>
+
+
+                    <Box sx={{
+                        textAlign: 'center',
+                        width: '100%',
+                        margin: 5
+                    }}>
+                        <Button
+                            variant="outlined"
+                            onClick={handleRegister}
+                        >Register</Button>
+                    </Box>
+                </Grid>
+
+            </Box>
+        </div>
+
     )
 }
