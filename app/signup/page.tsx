@@ -1,11 +1,8 @@
 'use client'
 
 import React from "react";
-import {Avatar, Box, Button, FilledInput, FormControl, Grid, IconButton, InputAdornment, InputLabel, Stack, TextField} from "@mui/material";
-import {deepOrange} from "@mui/material/colors";
+import {Avatar, Box, Button, Grid, IconButton, Stack, TextField} from "@mui/material";
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
-import {width} from "@mui/system";
-import {Visibility, VisibilityOff} from "@mui/icons-material";
 
 const formItems = [
     {
@@ -25,23 +22,24 @@ const formItems = [
 
 
 export default function Signup() {
-    let [textFieldErrors, setTextFieldErrors] = React.useState({
+    const [textFieldErrors, setTextFieldErrors] = React.useState({
         password: false,
         password2: false,
         email: false,
         verification: false
     })
-    let [textFieldHelperTexts, setTextFieldHelperTexts] = React.useState({
+    const [textFieldHelperTexts, setTextFieldHelperTexts] = React.useState({
         password: "",
         password2: "",
         email: "",
         verification: ""
     })
 
-    let [password, setPassword] = React.useState("")
-    let [password2, setPassword2] = React.useState("")
-    let [email, setEmail] = React.useState("")
-    let [verification, setVerification] = React.useState("")
+    const [password, setPassword] = React.useState("")
+    const [password2, setPassword2] = React.useState("")
+    const [email, setEmail] = React.useState("")
+    const [verification, setVerification] = React.useState("")
+    const [image, setImage] = React.useState("");
 
     const [showPassword, setShowPassword] = React.useState(false);
 
@@ -116,8 +114,12 @@ export default function Signup() {
         }
     }
 
-    const handleAvatarUpload = () => {
-
+    const handleAvatarUpload = (event: { target: {
+        files: (Blob | MediaSource)[]; };
+    }) => {
+        let img = URL.createObjectURL(event.target.files[0])
+        console.log(img)
+        setImage(img);
     }
 
     const handleEmailVerification = () => {
@@ -200,15 +202,26 @@ export default function Signup() {
                         textAlign: 'center'
                     }}>
                         <p>Choose your avatar</p>
-                        <Avatar sx={{ margin: 'auto', marginTop: 3, marginBottom: 2 }} variant="square">
-                            N
-                        </Avatar>
+                        <Box sx={{
+                            width: '%100',
+                            margin: 1,
+                            background: 'white'
+                        }}>
+                            {image && <img src={image} alt="Uploaded Image"/>}
+                        </Box>
+
                         <IconButton
                             color="primary"
                             aria-label="upload picture"
                             component="label"
-                            onClick={handleAvatarUpload}
+                            sx={{
+                                margin: 'auto'
+                            }}
                         >
+                            <input hidden
+                                   accept="image/*"
+                                   type="file"
+                                   onChange={handleAvatarUpload}/>
                             <PhotoCamera />
                         </IconButton>
                     </Grid>
