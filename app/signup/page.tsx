@@ -25,6 +25,19 @@ const formItems = [
 
 
 export default function Signup() {
+    let [textFieldErrors, setTextFieldErrors] = React.useState({
+        password: false,
+        password2: false,
+        email: false,
+        verification: false
+    })
+    let [textFieldHelperTexts, setTextFieldHelperTexts] = React.useState({
+        password: "",
+        password2: "",
+        email: "",
+        verification: ""
+    })
+
     let [password, setPassword] = React.useState("")
     let [password2, setPassword2] = React.useState("")
     let [email, setEmail] = React.useState("")
@@ -32,16 +45,54 @@ export default function Signup() {
 
     const [showPassword, setShowPassword] = React.useState(false);
 
-    const handleClickShowPassword = () => setShowPassword((show) => !show);
-    const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
-        event.preventDefault();
-    };
-    const handleRegister = () => {
-        let credential = {
-            email,
-            password
+    const validateForm = () => {
+        let matchEmail = String(email)
+            .toLowerCase()
+            .match(
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            )
+        let matchPassword = String(password).match(
+            /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/
+        )
+        console.log(matchEmail)
+        console.log(matchPassword)
+        let validateEmail = matchEmail !== null && matchEmail.length >= 1
+        let passwordMatches = password === password2
+        let passwordInRightForm = matchPassword !== null && matchPassword.length >= 1
+        let validatePassword = passwordInRightForm && passwordMatches
+        let validateVerification = String(verification).toUpperCase() === "HELLO"
+        let errors = {
+            password: !validatePassword,
+            password2: !validatePassword,
+            email: !validateEmail,
+            verification: !validateVerification
         }
-        console.log(credential)  // pass the credential to api
+        let helperTexts = {
+            password: !passwordMatches ? "Password does not match" :
+                !passwordInRightForm ? "Invalid password" : "",
+            password2: !passwordMatches ? "Password does not match" : "",
+            email: !validateEmail ? "Invalid email" : "",
+            verification: !validateVerification ? "Wrong verification code" : ""
+        }
+
+        setTextFieldErrors(errors)
+        setTextFieldHelperTexts(helperTexts)
+        return !(validateEmail && validatePassword && validateVerification)
+    }
+
+    const handleClickShowPassword = () => setShowPassword((show) => !show);
+    const handleRegister = () => {
+        let hasError = validateForm()
+        if(!hasError){
+            let credential = {
+                email,
+                password
+            }
+            console.log(credential)  // pass the credential to api
+        } else {
+            console.error("Wrong input")
+        }
+
     };
 
     const handleTextFieldChange = (event: { target: {
@@ -79,7 +130,7 @@ export default function Signup() {
                 alignItems='center'
                 sx={{
                 top: 100,
-                width: '60%',
+                width: 500,
                 margin: 'auto'
             }}>
                 <h1 className="text-3xl font-semibold text-center text-gray-800 capitalize lg:text-4xl dark:text-white">
@@ -100,17 +151,20 @@ export default function Signup() {
                             {
                                 formItems.map((item, index) => {
                                     let isPassword = item.ref === "password" || item.ref === "password2"
+                                    let hasError = textFieldErrors[item.ref as keyof typeof textFieldErrors]
+                                    let helperText = textFieldHelperTexts[item.ref as keyof typeof textFieldHelperTexts]
                                     return (
                                         <Box key={index} sx={{width: 300}}>
 
                                             <p>{item.name}</p>
                                             <TextField
                                                 required
-                                                type={isPassword ? "password" : "text"}
+                                                type={isPassword && !showPassword ? "password" : "text"}
                                                 variant="standard"
                                                 id={item.ref + "-text-field"}
                                                 onChange={handleTextFieldChange}
-
+                                                error={hasError}
+                                                helperText={helperText}
                                             />
                                             <Button
                                                 hidden={item.ref !== 'email'}
@@ -122,6 +176,17 @@ export default function Signup() {
                                             }}
                                             >
                                                 Verify
+                                            </Button>
+                                            <Button
+                                                hidden={item.ref !== 'password' && item.ref !== 'password2'}
+                                                variant="text"
+                                                size="small"
+                                                onClick={handleClickShowPassword}
+                                                sx={{
+                                                    margin: 'auto'
+                                                }}
+                                            >
+                                                { showPassword ? 'Hide' : 'Show'}
                                             </Button>
                                         </Box>
                                     )
