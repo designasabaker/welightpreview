@@ -1,7 +1,7 @@
 'use client'
 
 import React from "react";
-import {Avatar, Box, Button, Grid, IconButton, Stack, TextField} from "@mui/material";
+import {Box, Button, Grid, IconButton, Stack, TextField} from "@mui/material";
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 
 const formItems = [
@@ -9,15 +9,15 @@ const formItems = [
         name: 'Email',
         ref: 'email'
     },{
+        name: 'Verification code',
+        ref: 'verification'
+    },{
         name: 'Password',
         ref: 'password'
     },{
         name: 'Re-enter password',
         ref: 'password2'
-    },{
-        name: 'Verification code',
-        ref: 'verification'
-    },
+    }
 ]
 
 
@@ -34,6 +34,7 @@ export default function Signup() {
         email: "",
         verification: ""
     })
+    const [emailVerified, setEmailVerified] = React.useState(false)
 
     const [password, setPassword] = React.useState("")
     const [password2, setPassword2] = React.useState("")
@@ -44,17 +45,9 @@ export default function Signup() {
     const [showPassword, setShowPassword] = React.useState(false);
 
     const validateForm = () => {
-        let matchEmail = String(email)
-            .toLowerCase()
-            .match(
-                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-            )
         let matchPassword = String(password).match(
             /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/
         )
-        console.log(matchEmail)
-        console.log(matchPassword)
-        let validateEmail = matchEmail !== null && matchEmail.length >= 1
         let passwordMatches = password === password2
         let passwordInRightForm = matchPassword !== null && matchPassword.length >= 1
         let validatePassword = passwordInRightForm && passwordMatches
@@ -62,20 +55,20 @@ export default function Signup() {
         let errors = {
             password: !validatePassword,
             password2: !validatePassword,
-            email: !validateEmail,
             verification: !validateVerification
         }
         let helperTexts = {
             password: !passwordMatches ? "Password does not match" :
                 !passwordInRightForm ? "Invalid password" : "",
             password2: !passwordMatches ? "Password does not match" : "",
-            email: !validateEmail ? "Invalid email" : "",
             verification: !validateVerification ? "Wrong verification code" : ""
         }
 
+        // @ts-ignore
         setTextFieldErrors(errors)
+        // @ts-ignore
         setTextFieldHelperTexts(helperTexts)
-        return !(validateEmail && validatePassword && validateVerification)
+        return !(validatePassword && validateVerification)
     }
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -114,35 +107,59 @@ export default function Signup() {
         }
     }
 
-    const handleAvatarUpload = (event: { target: {
-        files: (Blob | MediaSource)[]; };
-    }) => {
+    //@ts-ignore
+    const handleAvatarUpload = (event) => {
         let img = URL.createObjectURL(event.target.files[0])
         console.log(img)
         setImage(img);
     }
 
+    // connect the email verification code api here
     const handleEmailVerification = () => {
+        let matchEmail = String(email)
+            .toLowerCase()
+            .match(
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            )
+        let validateEmail = matchEmail !== null && matchEmail.length >= 1
+        let errors = {
+            email: !validateEmail
+        }
+        let helperTexts = {
+            email: !validateEmail ? "Invalid email" : ""
+        }
 
+        setEmailVerified(validateEmail)
+        // @ts-ignore
+        setTextFieldErrors(errors)
+        // @ts-ignore
+        setTextFieldHelperTexts(helperTexts)
     };
     return (
         <div>
+            <h1 className="text-3xl font-semibold text-center text-gray-800 capitalize lg:text-4xl dark:text-white">
+                Register
+            </h1>
             <Box
                 justifyContent="center"
                 alignItems='center'
                 sx={{
-                top: 100,
-                width: 500,
-                margin: 'auto'
-            }}>
-                <h1 className="text-3xl font-semibold text-center text-gray-800 capitalize lg:text-4xl dark:text-white">
-                    Register
-                </h1>
-                <Grid container spacing={2} sx={{
+                    top: 100,
+                    width: 700,
+                    margin: 'auto',
+                    marginTop: 3,
+                    border: 2,
+                    padding: 5,
+                    borderColor: 'white',
+                    backgroundColor: 'rgba(255,255,255,0.04)'
+                }}
+            >
+
+                <Grid container sx={{
                     boarder: 20,
                     marginTop: 5
                 }}>
-                    <Grid item={true} xs={8}>
+                    <Grid item={true} xs={7}>
                         <Stack
                             justifyContent="center"
                             alignItems="center"
@@ -153,6 +170,7 @@ export default function Signup() {
                             {
                                 formItems.map((item, index) => {
                                     let isPassword = item.ref === "password" || item.ref === "password2"
+                                    let isEmail = item.ref === "email"
                                     let hasError = textFieldErrors[item.ref as keyof typeof textFieldErrors]
                                     let helperText = textFieldHelperTexts[item.ref as keyof typeof textFieldHelperTexts]
                                     return (
@@ -161,6 +179,7 @@ export default function Signup() {
                                             <p>{item.name}</p>
                                             <TextField
                                                 required
+                                                disabled={emailVerified && isEmail}
                                                 type={isPassword && !showPassword ? "password" : "text"}
                                                 variant="standard"
                                                 id={item.ref + "-text-field"}
@@ -180,7 +199,7 @@ export default function Signup() {
                                                 Verify
                                             </Button>
                                             <Button
-                                                hidden={item.ref !== 'password' && item.ref !== 'password2'}
+                                                hidden={!isPassword}
                                                 variant="text"
                                                 size="small"
                                                 onClick={handleClickShowPassword}
@@ -197,7 +216,7 @@ export default function Signup() {
 
                         </Stack>
                     </Grid>
-                    <Grid item={true} xs={4} sx={{
+                    <Grid item={true} xs={5} sx={{
                         margin: 'auto',
                         textAlign: 'center'
                     }}>
@@ -232,10 +251,12 @@ export default function Signup() {
                         width: '100%',
                         margin: 5
                     }}>
-                        <Button
+                        {emailVerified && <Button
+                            disabled={!emailVerified}
                             variant="outlined"
                             onClick={handleRegister}
-                        >Register</Button>
+                        >Register</Button>}
+                        {!emailVerified && <p>*Please verify your email first</p>}
                     </Box>
                 </Grid>
 
