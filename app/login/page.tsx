@@ -8,7 +8,7 @@ export default function Login() {
     let [username, setUsername] = React.useState("")
     const handleLogin = () => {
         let credential = {
-            username,
+            username: name,
             password
         }
         console.log(credential)  // pass the credential to api
@@ -17,7 +17,7 @@ export default function Login() {
     const handleTextFieldChange = (event: { target: {
             value: string;
             id: any; }; }) => {
-        let targetId = event.target.id
+        let targetId = event.target.userId
         if(targetId === "username-text-field"){
             setUsername(event.target.value)
         } else if(targetId === "password-text-field"){
