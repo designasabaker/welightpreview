@@ -5,6 +5,9 @@ import Main from "../pages/main";
 
 export default function Page() {
     return (
-        <Main />
+        <div>
+            <Main />
+        </div>
+
     )
 }

@@ -1,7 +1,10 @@
+"use client"
 import Link from "next/link";
 import React from "react";
+import {useUser} from "../context/userStore"
 
 export default function Navbar() {
+    const { hasLoggedIn } = useUser()
     return (
         <div className="navbar">
             <div className="flex-1">
@@ -11,10 +14,18 @@ export default function Navbar() {
                 <ul className="menu menu-horizontal px-1">
                     <Link href="/pricing" className="btn btn-ghost normal-case text-lg">Pricing</Link>
                     <Link href="/about" className="btn btn-ghost normal-case text-lg">About Us</Link>
-                    <div className="flex-1">
-                        <Link href="/" className="btn btn-ghost normal-case text-lg">Login</Link>
-                        <Link href="/" className="btn btn-ghost normal-case text-lg">Sign Up</Link>
-                    </div>
+                    {
+                        hasLoggedIn ? (
+                            <div className="flex-1">
+                                <Link href="/form" className="btn btn-ghost normal-case text-lg">Account</Link>
+                            </div>
+                        ) : (
+                            <div className="flex-1">
+                                <Link href="/login" className="btn btn-ghost normal-case text-lg">Login</Link>
+                                <Link href="/signup" className="btn btn-ghost normal-case text-lg">Sign Up</Link>
+                            </div>
+                        )
+                    }
                 </ul>
             </div>
         </div>
