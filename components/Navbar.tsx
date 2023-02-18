@@ -1,8 +1,7 @@
 "use client"
 import Link from "next/link";
 import React from "react";
-import { useUser } from "../context/userStore"
-export { getServerSideProps } from "../context/userStore"
+import {useUser} from "../context/userStore"
 
 export default function Navbar() {
     const { hasLoggedIn } = useUser()

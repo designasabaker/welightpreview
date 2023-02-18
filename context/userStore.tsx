@@ -1,41 +1,21 @@
-import { createContext, useContext } from 'react'
+import React, { createContext, useContext } from 'react'
 
-interface User {
-    id: string
-    name: string
-    hasLoggedIn: boolean
+
+type UserContextType = {
+    hasLoggedIn: boolean,
+    setHasLoggedIn: (hasLoggedIn: boolean) => void
 }
 
-export async function getServerSideProps(){
-    return {
-        props: {
-            user: {
-                userId: `ID`,
-                username: `NAME`,
-                hasLoggedIn: false
-            }
-        }
-    }
-}
-
-const useUserController = (user: User) => {
-    return {
-        userId: user.id,
-        username: user.name,
-        hasLoggedIn: user.hasLoggedIn
-    }
-}
-
-const UserContext = createContext<ReturnType<typeof useUserController>>({
-    userId: "",
-    username: "",
-    hasLoggedIn: false
+export const UserContext = createContext<UserContextType>({
+    hasLoggedIn: false,
+    setHasLoggedIn(): void {}
 })
 
 //@ts-ignore
-export const UserProvider = ({ user, children }) => {
+export const UserProvider = ({ children }) => {
+    const [hasLoggedIn, setHasLoggedIn] = React.useState(false)
     return (
-        <UserContext.Provider value={useUserController(user)}>
+        <UserContext.Provider value={{hasLoggedIn, setHasLoggedIn}}>
             {children}
         </UserContext.Provider>
     );
