@@ -3,7 +3,7 @@ import React from "react";
 export default function Main() {
     return (
         <main>
-            <div className="relative px-6 lg:px-8">
+            <div className="relative px-6 lg:px-8 bg-white"> {/* change to the white background */}
                 <div className="mx-auto max-w-3xl pt-20 pb-32 sm:pt-48 sm:pb-40">
                     <div>
                     <div className="hidden sm:mb-8 sm:flex sm:justify-center">
