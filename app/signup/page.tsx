@@ -136,25 +136,33 @@ export default function Signup() {
         setTextFieldHelperTexts(helperTexts)
     };
     return (
-        <div>
-            <h1 className="text-3xl font-semibold text-center text-gray-800 capitalize lg:text-4xl dark:text-white">
-                Register
-            </h1>
             <Box
                 justifyContent="center"
                 alignItems='center'
                 sx={{
-                    top: 100,
-                    width: 700,
-                    margin: 'auto',
-                    marginTop: 3,
-                    border: 2,
-                    padding: 5,
+                    display: 'inline-block',
+                    top: 0,
+                    width: '40%',
+                        minWidth:'600px',
+                    height: '100%',
+                    minHeight:'300px',
+                    margin: '0',
+                    marginTop: 5,
+                    border: 1,
+                        borderRadius: '0 15px 15px 0',
+                    padding: 0,
                     borderColor: 'white',
-                    backgroundColor: 'rgba(255,255,255,0.04)'
+                    backgroundColor: 'rgba(255,255,255,0.04)',
+                    opacity: '50%',
                 }}
-            >
-
+            > {/* put sign-up box to the right side */}
+                <Box sx={{
+                    textAlign: 'center',
+                    fontSize: '2em',
+                    marginTop:'40px',
+                }}>
+                    <h1>Register</h1>
+                </Box>
                 <Grid container sx={{
                     boarder: 20,
                     marginTop: 5
@@ -165,7 +173,7 @@ export default function Signup() {
                             alignItems="center"
                             spacing={2}
                             sx={{
-                            margin: 'auto'
+                            margin: '0 auto'
                         }}>
                             {
                                 formItems.map((item, index) => {
@@ -261,7 +269,6 @@ export default function Signup() {
                 </Grid>
 
             </Box>
-        </div>
 
     )
 }
