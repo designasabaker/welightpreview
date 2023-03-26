@@ -5,6 +5,7 @@ import {Box, Button, Stack, TextField} from "@mui/material";
 import {useUser} from "../../context/userStore"
 import Link from "next/link";
 import {useRouter} from "next/navigation";
+import Signup from "../signup/page"
 
 export default function Login() {
     const router = useRouter()
@@ -41,27 +42,41 @@ export default function Login() {
         }
     }
     return (
-        <div>
+    <Box justifyContent="center"
+         alignItems='center'
+            sx={{
+                display: 'flex',
+                width: '100%',
+                height: '70vh',
+                margin: 0,
+                marginTop: 10,
+            }}>
             {
                 !hasLoggedIn ? (
-                    <Box sx={{
-                        top: '200px',
-                        width: '50%',
-                        margin: 'auto'
-                    }}>
-                        <h1 className="text-3xl font-semibold text-center text-gray-800 capitalize lg:text-4xl dark:text-white">
-                            Sign In
-                        </h1>
-                        <Box sx={{
-                            top: 100,
-                            width: 700,
-                            margin: 'auto',
-                            marginTop: 3,
-                            border: 2,
-                            padding: 5,
+                        <Box justifyContent="center"
+                             alignItems='center'
+                             sx={{
+                            display: 'inline-block',
+                            top: 0,
+                            width: '30%',
+                                 minWidth:'300px',
+                            height: '100%',
+                                 minHeight:'300px',
+                            margin: '0',
+                            marginTop: 5,
+                            border: 1,
+                                 borderRadius: '15px 0 0 15px',
+                            padding: 0,
                             borderColor: 'white',
                             backgroundColor: 'rgba(255,255,255,0.04)'
-                        }}>
+                        }}> {/* put log-in box to the left side */}
+                            <Box sx={{
+                                textAlign: 'center',
+                                fontSize: '2em',
+                                marginTop:'40px',
+                            }}>
+                                <h1>Sign In</h1>
+                            </Box>
                             <Stack spacing={4} sx={{
                                 padding: 10,
                                 margin: 'auto',
@@ -88,11 +103,11 @@ export default function Login() {
                             </Stack>
                         </Box>
 
-                    </Box>
                 ) : (
                     <Box sx={{
+                        display: 'inline-block',
                         width: '50%',
-                        margin: 'auto'
+                        margin: '0'
                     }}>
                         <h1>Successfully logged in, redirecting...</h1>
                         <p>
@@ -102,7 +117,7 @@ export default function Login() {
                     </Box>
                 )
             }
-        </div>
-
+            <Signup ></Signup> {/* add the SIGN-UP here */}
+    </Box>
     )
 }
