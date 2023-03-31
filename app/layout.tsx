@@ -1,6 +1,6 @@
 "use client"
 
-import '../styles/globals.css'
+import '../styles/global.css'
 import Navbar from '../components/Navbar'
 import { UserProvider } from "../context/userStore";
 import React from "react";
