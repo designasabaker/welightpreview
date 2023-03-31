@@ -21,7 +21,7 @@ const formItems = [
 ]
 
 
-export default function Signup() {
+export default function Signup({isFocusOnLogin, setFocusOnLogin}) {
     const [textFieldErrors, setTextFieldErrors] = React.useState({
         password: false,
         password2: false,
@@ -48,9 +48,9 @@ export default function Signup() {
         let matchPassword = String(password).match(
             /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/
         )
-        let passwordMatches = password === password2
-        let passwordInRightForm = matchPassword !== null && matchPassword.length >= 1
-        let validatePassword = passwordInRightForm && passwordMatches
+        let passwordMatches:boolean = password === password2
+        let passwordInRightForm:boolean = matchPassword !== null && matchPassword.length >= 1
+        let validatePassword:boolean = passwordInRightForm && passwordMatches
         let validateVerification = String(verification).toUpperCase() === "HELLO"
         let errors = {
             password: !validatePassword,
@@ -137,43 +137,29 @@ export default function Signup() {
     };
     return (
             <Box
-                justifyContent="center"
-                alignItems='center'
-                sx={{
-                    display: 'inline-block',
-                    top: 0,
-                    width: '40%',
-                        minWidth:'600px',
-                    height: '100%',
-                    minHeight:'300px',
-                    margin: '0',
-                    marginTop: 5,
-                    border: 1,
-                        borderRadius: '0 15px 15px 0',
-                    padding: 0,
-                    borderColor: 'white',
-                    backgroundColor: 'rgba(255,255,255,0.04)',
-                    opacity: '50%',
-                }}
+                className={`signup-box ${!isFocusOnLogin ? 'focused' : ''}`}
+                onClick={() => setFocusOnLogin(false)}
             > {/* put sign-up box to the right side */}
                 <Box sx={{
                     textAlign: 'center',
                     fontSize: '2em',
                     marginTop:'40px',
                 }}>
-                    <h1>Register</h1>
+                    <h1>Sign Up</h1>
                 </Box>
                 <Grid container sx={{
-                    boarder: 20,
-                    marginTop: 5
+                    border: 0,
+                    marginTop: 5,
+                    display: 'flex',
+                    justifyItem:'center'
                 }}>
-                    <Grid item={true} xs={7}>
+                    <Grid item={true} xs={7} sx={{maxWidth: '100%',}}>
                         <Stack
                             justifyContent="center"
                             alignItems="center"
                             spacing={2}
                             sx={{
-                            margin: '0 auto'
+                            margin: '0',
                         }}>
                             {
                                 formItems.map((item, index) => {
@@ -183,7 +169,6 @@ export default function Signup() {
                                     let helperText = textFieldHelperTexts[item.ref as keyof typeof textFieldHelperTexts]
                                     return (
                                         <Box key={index} sx={{width: 300}}>
-
                                             <p>{item.name}</p>
                                             <TextField
                                                 required
@@ -221,7 +206,10 @@ export default function Signup() {
                                     )
                                 })
                             }
-
+                            <Button
+                                variant="outlined"
+                                href={'/signup'}
+                            >Register</Button>
                         </Stack>
                     </Grid>
                     <Grid item={true} xs={5} sx={{
@@ -236,7 +224,6 @@ export default function Signup() {
                         }}>
                             {image && <img src={image} alt="Uploaded Image"/>}
                         </Box>
-
                         <IconButton
                             color="primary"
                             aria-label="upload picture"
@@ -252,8 +239,6 @@ export default function Signup() {
                             <PhotoCamera />
                         </IconButton>
                     </Grid>
-
-
                     <Box sx={{
                         textAlign: 'center',
                         width: '100%',

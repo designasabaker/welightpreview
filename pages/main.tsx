@@ -1,5 +1,5 @@
 import React from "react";
-
+// home page
 export default function Main() {
     return (
         <main>
