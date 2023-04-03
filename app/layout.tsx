@@ -13,7 +13,7 @@ export default function RouteLayout({
     return (
         <UserProvider>
             <html>
-                <head>
+                <head className="bg-white">
                     <title>WeLight</title>
                 </head>
                 <body>
