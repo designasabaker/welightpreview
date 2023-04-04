@@ -21,7 +21,8 @@ const formItems = [
 ]
 
 
-export default function Signup({isFocusOnLogin, setFocusOnLogin}) {
+export default function Signup(props: any) {
+    const {isFocusOnLogin, setFocusOnLogin} = props;
     const [textFieldErrors, setTextFieldErrors] = React.useState({
         password: false,
         password2: false,
