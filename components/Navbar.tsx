@@ -1,7 +1,8 @@
 "use client"
 import Link from "next/link";
 import React from "react";
-import {useUser} from "../context/userStore"
+import {useUser} from "../context/userStore";
+import Logo from "../components/Logo";
 
 export default function Navbar() {
     const { hasLoggedIn } = useUser()
@@ -9,7 +10,10 @@ export default function Navbar() {
         <div className="navbar fixed top-0 left-0 w-full z-10 bg-white flex-row justify-between"> {/* fixed https://flowbite.com/docs/components/navbar/ */}
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <div className="flex items-center">
-                    <Link href="/" className="btn btn-ghost normal-case text-xl">WeLight</Link>
+                    <Link href="/" className="flex items-center">
+                        <Logo />
+                        <span className="self-center text-xl font-bold">WeLight</span>
+                    </Link>
                 </div>
                 <div className="w-full md:block md:w-auto space-x-8" id="navbar-default">
                     <ul className="flex-row">
