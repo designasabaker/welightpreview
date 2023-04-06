@@ -6,7 +6,12 @@ module.exports = {
     './app/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        brandBlue: '#47A8E5',
+        brandDeepBlue: '#133A7C',
+      },
+    },
   },
   plugins: [require('@tailwindcss/forms')],
   // plugins: [

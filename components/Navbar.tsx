@@ -7,7 +7,7 @@ import Logo from "../components/Logo";
 export default function Navbar() {
     const { hasLoggedIn } = useUser()
     return (
-        <div className="navbar fixed top-0 left-0 w-full z-10 bg-white flex-row justify-between"> {/* fixed https://flowbite.com/docs/components/navbar/ */}
+        <div className="sticky top-0 left-0 w-full z-10 bg-white flex-row justify-between"> {/* fixed https://flowbite.com/docs/components/navbar/ */}
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <div className="flex items-center">
                     <Link href="/" className="flex items-center">

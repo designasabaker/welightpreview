@@ -15,6 +15,7 @@ export default function RouteLayout({
             <html>
                 <head className="bg-white">
                     <title>WeLight</title>
+                    <link rel="icon" href="/welight-w.ico" />
                 </head>
                 <body>
                     <Navbar />
