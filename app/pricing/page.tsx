@@ -57,11 +57,11 @@ export default function Pricing() {
                                 <Box
                                     className={
                                         !(selected === p.title )?
-                                            "w-full p-8 space-y-8 text-center border border-gray-200 rounded-lg hover:border-b-8"
-                                            : "w-full p-8 space-y-8 text-center hover:border-b-8 bg-brandDeepBlue text-white rounded-lg"
+                                            "w-full p-8 space-y-8 text-center border border-gray-200 rounded-lg hover:border-b-8 duration-300"
+                                            : "w-full p-8 space-y-8 text-center bg-brandDeepBlue text-white rounded-lg hover:border-b-8 duration-300"
                                     }
                                     key={p.title}
-                                >
+                                >  {/* BUG: when one box is hovered, other boxes also change their size */}
                                     <p className="font-medium uppercase text-inherit">
                                         {p.title.toUpperCase()}
                                     </p>
