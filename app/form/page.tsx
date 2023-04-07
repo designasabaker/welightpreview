@@ -1,14 +1,110 @@
-import React from 'react';
+'use client'
+import React,{useEffect, useState} from 'react';
+import {useUser} from "../../context/userStore";
+import Select from 'react-select';
 
+type MouseEvent = React.MouseEvent<HTMLButtonElement>;
 
+const LOCAL_STORAGE_KEY = 'welightUserInformation';
+const sampleUserInfos = {
+  id: 1,
+  firstName: '',
+  lastName: '',
+  emailAddress: '',
+  phoneNumber: '000.000.0000',
+  companyWebsite: 'www.example.com',
+  country: '',
+  streetAddress: '',
+  city: '',
+  region: '',
+  postalCode: '',
+  website: 'www.me.com',
+  about: 'I am a software engineer',
+  // photo: '',?
+  avatar: '',
+  coverPhoto: '',
+  byEmail:{
+    comments: false,
+    candidates: false,
+    offers: false
+  },
+  pushNotifications: {
+    everyThing: true,
+    sameAsEmail: false,
+    noPushNotifications: false
+  }
+}
 export default function Form() {
+  const countryOptions = [
+    { value: 'United States', label: 'United States' },
+    { value: 'United Kingdom', label: 'United Kingdom' },
+    { value: 'Canada', label: 'Canada' },
+    { value: 'Mexico', label: 'Mexico' },
+  ];
+
+  const [userInfos, setUserInfos] = useState(sampleUserInfos);
+  const { hasLoggedIn, setHasLoggedIn } = useUser();
+
+  const handleChange = (eventOrSelectedOption:MouseEvent) => {
+    // 如果传入的参数是一个具有 target 属性的对象，则处理为原生输入元素事件
+    if (eventOrSelectedOption.target) {
+      const { name, value } = eventOrSelectedOption.target;
+      setUserInfos({ ...userInfos, [name]: value });
+    } else {
+      // 否则，假定它是一个 react-select 选中的选项对象
+      const { value } = eventOrSelectedOption;
+      setUserInfos({ ...userInfos, country: value });
+    }
+    return;
+  };
+
+  const handleByEmailChange = (e:MouseEvent) => {
+    const { name, checked } = e.target;
+    setUserInfos({ ...userInfos, byEmail: { ...userInfos.byEmail, [name]: checked } });
+  }
+  const handleByPushChange = (e:MouseEvent) => {
+    const { id, checked } = e.target;
+    setUserInfos({ ...userInfos, pushNotifications: { ...userInfos.pushNotifications, [id]: checked } });
+  }
+  // helper function for handleChange
+  // function updateValue(obj: { string:string | object }, key:string, value:string) {
+  //   // 如果当前对象包含该键，则更新该值并返回对象
+  //   if (obj.hasOwnProperty(key)) {
+  //     obj[key]= value;
+  //     return obj;
+  //   }
+  //   // 如果当前对象不包含该键，则遍历所有子对象并递归调用函数
+  //   for (let prop in obj) {
+  //     if (obj.hasOwnProperty(prop) && typeof obj[prop] === "object") {
+  //       updateValue(obj[prop], key, value);
+  //     }
+  //   }
+  //   // 返回更新后的对象
+  //   return obj;
+  // }
+
+  const handleSave = (e: MouseEvent) => {
+    e.preventDefault();
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(userInfos));
+  }
+
+  useEffect(() => {
+    const userInfoJSON = localStorage.getItem(LOCAL_STORAGE_KEY);
+    if(userInfoJSON != null) setUserInfos(JSON.parse(userInfoJSON));
+  }, []);
+
+  useEffect(() => {
+    console.log(userInfos);
+  }, [userInfos]);
+
     return (
-      <div className="mx-20 mt-10">
+      <div className="mx-20 py-9">
+
         <div>
           <div className="md:grid md:grid-cols-3 md:gap-6">
             <div className="md:col-span-1">
               <div className="px-4 sm:px-0">
-                <h3 className="text-lg font-medium leading-6 text-white">Profile</h3>
+                <h3 className="text-lg font-medium leading-6 text-black">Profile</h3>
                 <p className="mt-1 text-sm text-gray-300">
                   This information will be displayed publicly so be careful what you share.
                 </p>
@@ -16,11 +112,11 @@ export default function Form() {
             </div>
             <div className="mt-5 md:col-span-2 md:mt-0">
               <form action="#" method="POST">
-                <div className="shadow sm:overflow-hidden sm:rounded-md">
+                <div className="border-2 border-solid border-gray-300 shadow sm:overflow-hidden sm:rounded-md">
                   <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
                     <div className="grid grid-cols-3 gap-6">
                       <div className="col-span-3 sm:col-span-2">
-                        <label htmlFor="company-website" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="companyWebsite" className="block text-sm font-medium text-gray-700">
                           Website
                         </label>
                         <div className="mt-1 flex rounded-md shadow-sm">
@@ -29,10 +125,11 @@ export default function Form() {
                           </span>
                           <input
                             type="text"
-                            name="company-website"
-                            id="company-website"
+                            name="companyWebsite"
+                            id="companyWebsite"
                             className="block w-full flex-1 rounded-none rounded-r-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                            placeholder="www.example.com"
+                            placeholder={userInfos.companyWebsite}
+                            onChange={(e) => handleChange(e)}
                           />
                         </div>
                       </div>
@@ -48,15 +145,17 @@ export default function Form() {
                           name="about"
                           rows={3}
                           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                          placeholder="you@example.com"
+                          placeholder={userInfos.about}
                           defaultValue={''}
+                          onChange={(e) => handleChange(e)}
                         />
                       </div>
                       <p className="mt-2 text-sm text-gray-500">
                         Brief description for your profile. URLs are hyperlinked.
                       </p>
                     </div>
-  
+
+                    {/* Change the avatar */}
                     <div>
                       <label className="block text-sm font-medium text-gray-700">Photo</label>
                       <div className="mt-1 flex items-center">
@@ -111,6 +210,7 @@ export default function Form() {
                     <button
                       type="submit"
                       className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      onClick={(e) => handleSave(e)}
                     >
                       Save
                     </button>
@@ -120,79 +220,108 @@ export default function Form() {
             </div>
           </div>
         </div>
-  
+
+    {/* line */}
         <div className="hidden sm:block" aria-hidden="true">
           <div className="py-5">
             <div className="border-t border-gray-900" />
           </div>
         </div>
-  
+
+    {/* Contact Info */}
         <div className="mt-10 sm:mt-0">
           <div className="md:grid md:grid-cols-3 md:gap-6">
             <div className="md:col-span-1">
               <div className="px-4 sm:px-0">
-                <h3 className="text-lg font-medium leading-6 text-white">Personal Information</h3>
+                <h3 className="text-lg font-medium leading-6 text-black">Contact Information</h3>
                 <p className="mt-1 text-sm text-gray-300">Use a permanent address where you can receive mail.</p>
               </div>
             </div>
             <div className="mt-5 md:col-span-2 md:mt-0">
               <form action="#" method="POST">
-                <div className="overflow-hidden shadow sm:rounded-md">
+                <div className="overflow-hidden border-2 border-solid border-gray-300 shadow sm:rounded-md">
                   <div className="bg-white px-4 py-5 sm:p-6">
                     <div className="grid grid-cols-6 gap-6">
                       <div className="col-span-6 sm:col-span-3">
-                        <label htmlFor="first-name" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">
                           First name
                         </label>
                         <input
                           type="text"
-                          name="first-name"
-                          id="first-name"
+                          name="firstName"
+                          id="firstName"
                           autoComplete="given-name"
                           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          onChange={(e) => handleChange(e)}
                         />
                       </div>
   
                       <div className="col-span-6 sm:col-span-3">
-                        <label htmlFor="last-name" className="block text-sm font-medium text-gray-700">
-                          Last name
+                        <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">
+                          Last name *
                         </label>
                         <input
                           type="text"
-                          name="last-name"
-                          id="last-name"
+                          required={true}
+                          name="lastName"
+                          id="lastName"
                           autoComplete="family-name"
                           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          onChange={(e) => handleChange(e)}
                         />
                       </div>
   
                       <div className="col-span-6 sm:col-span-4">
                         <label htmlFor="email-address" className="block text-sm font-medium text-gray-700">
-                          Email address
+                          Email address *
                         </label>
                         <input
                           type="text"
-                          name="email-address"
-                          id="email-address"
+                          required={true}
+                          name="emailAddress"
+                          id="emailAddress"
                           autoComplete="email"
                           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          onChange={(e) => handleChange(e)}
                         />
                       </div>
-  
+
+                      <div className="col-span-6 sm:col-span-4">
+                        <label htmlFor="email-address" className="block text-sm font-medium text-gray-700">
+                          Phone:
+                        </label>
+                        <input
+                            type="text"
+                            name="phoneNumber"
+                            id="phoneNumber"
+                            autoComplete="phone"
+                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                            placeholder={sampleUserInfos.phoneNumber}
+                        />
+                      </div>
+
                       <div className="col-span-6 sm:col-span-3">
                         <label htmlFor="country" className="block text-sm font-medium text-gray-700">
                           Country
                         </label>
-                        <select
-                          id="country"
-                          name="country"
-                          autoComplete="country-name"
+                        {/*<select*/}
+                        {/*  id="country"*/}
+                        {/*  name="country"*/}
+                        {/*  value={userInfos.country}*/}
+                        {/*  className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"*/}
+                        {/*  onChange={(e) => handleChange(e)}*/}
+                        {/*>*/}
+                        {/*  <option label="United States">United States</option>*/}
+                        {/*  <option label="United Kingdom">United Kingdom</option>*/}
+                        {/*  <option label="Canada">Canada</option>*/}
+                        {/*  <option label="Mexico">Mexico</option>*/}
+                        {/*</select>*/}
+                        <Select
                           className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                        >
-                          <option>United States</option>
-                          <option>Canada</option>
-                          <option>Mexico</option>
-                        </select>
+                          options={countryOptions}
+                          defaultValue={{value:userInfos.country, label:userInfos.country}}
+                          onChange={(e) => handleChange(e)}
+                          />
                       </div>
   
                       <div className="col-span-6">
@@ -201,10 +330,11 @@ export default function Form() {
                         </label>
                         <input
                           type="text"
-                          name="street-address"
-                          id="street-address"
+                          name="streetAddress"
+                          id="streetAddress"
                           autoComplete="street-address"
                           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          onChange={(e) => handleChange(e)}
                         />
                       </div>
   
@@ -218,6 +348,7 @@ export default function Form() {
                           id="city"
                           autoComplete="address-level2"
                           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          onChange={(e) => handleChange(e)}
                         />
                       </div>
   
@@ -231,6 +362,7 @@ export default function Form() {
                           id="region"
                           autoComplete="address-level1"
                           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          onChange={(e) => handleChange(e)}
                         />
                       </div>
   
@@ -240,10 +372,11 @@ export default function Form() {
                         </label>
                         <input
                           type="text"
-                          name="postal-code"
-                          id="postal-code"
+                          name="postalCode"
+                          id="postalCode"
                           autoComplete="postal-code"
                           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                          onChange={(e) => handleChange(e)}
                         />
                       </div>
                     </div>
@@ -252,6 +385,7 @@ export default function Form() {
                     <button
                       type="submit"
                       className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      onClick={(e) => handleSave(e)}
                     >
                       Save
                     </button>
@@ -272,13 +406,13 @@ export default function Form() {
           <div className="md:grid md:grid-cols-3 md:gap-6">
             <div className="md:col-span-1">
               <div className="px-4 sm:px-0">
-                <h3 className="text-lg font-medium leading-6 text-white">Notifications</h3>
+                <h3 className="text-lg font-medium leading-6 text-black">Notifications</h3>
                 <p className="mt-1 text-sm text-gray-300">Decide which communications you'd like to receive and how.</p>
               </div>
             </div>
             <div className="mt-5 md:col-span-2 md:mt-0">
               <form action="#" method="POST">
-                <div className="overflow-hidden shadow sm:rounded-md">
+                <div className="overflow-hidden border-2 border-solid border-gray-300 shadow sm:rounded-md">
                   <div className="space-y-6 bg-white px-4 py-5 sm:p-6">
                     <fieldset>
                       <legend className="sr-only">By Email</legend>
@@ -293,6 +427,7 @@ export default function Form() {
                               name="comments"
                               type="checkbox"
                               className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                              onChange={(e) => handleByEmailChange(e)}
                             />
                           </div>
                           <div className="ml-3 text-sm">
@@ -309,6 +444,7 @@ export default function Form() {
                               name="candidates"
                               type="checkbox"
                               className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                              onChange={(e) => handleByEmailChange(e)}
                             />
                           </div>
                           <div className="ml-3 text-sm">
@@ -325,6 +461,7 @@ export default function Form() {
                               name="offers"
                               type="checkbox"
                               className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                              onChange={(e) => handleByEmailChange(e)}
                             />
                           </div>
                           <div className="ml-3 text-sm">
@@ -340,12 +477,16 @@ export default function Form() {
                       <legend className="contents text-base font-medium text-gray-900">Push Notifications</legend>
                       <p className="text-sm text-gray-500">These are delivered via SMS to your mobile phone.</p>
                       <div className="mt-4 space-y-4">
-                        <div className="flex items-center">
+                        <div
+                            className="flex items-center"
+                        >
                           <input
-                            id="push-everything"
-                            name="push-notifications"
+                            id="everyThing"
+                            name="pushNotifications"
                             type="radio"
                             className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                            onChange={(e) => handleByPushChange(e)}
+                            checked={userInfos.pushNotifications.everyThing}
                           />
                           <label htmlFor="push-everything" className="ml-3 block text-sm font-medium text-gray-700">
                             Everything
@@ -353,10 +494,12 @@ export default function Form() {
                         </div>
                         <div className="flex items-center">
                           <input
-                            id="push-email"
-                            name="push-notifications"
+                            id="sameAsEmail"
+                            name="pushNotifications"
                             type="radio"
                             className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                            onChange={(e) => handleByPushChange(e)}
+                            checked={userInfos.pushNotifications.sameAsEmail}
                           />
                           <label htmlFor="push-email" className="ml-3 block text-sm font-medium text-gray-700">
                             Same as email
@@ -364,10 +507,12 @@ export default function Form() {
                         </div>
                         <div className="flex items-center">
                           <input
-                            id="push-nothing"
-                            name="push-notifications"
+                            id="noPushNotifications"
+                            name="pushNotifications"
                             type="radio"
                             className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                            onChange={(e) => handleByPushChange(e)}
+                            checked={userInfos.pushNotifications.noPushNotifications}
                           />
                           <label htmlFor="push-nothing" className="ml-3 block text-sm font-medium text-gray-700">
                             No push notifications
@@ -380,6 +525,7 @@ export default function Form() {
                     <button
                       type="submit"
                       className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      onClick={(e) => handleSave(e)}
                     >
                       Save
                     </button>
