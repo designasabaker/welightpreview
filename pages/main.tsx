@@ -35,7 +35,7 @@ export default function Main() {
                             &rarr;
                             </span>
                         </a>
-                        <a href="#" className="inline-block rounded-lg bg-cyan-600 px-4 py-1.5 text-base font-semibold leading-7 text-gray-200 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
+                        <a href="/login" className="inline-block rounded-lg bg-cyan-600 px-4 py-1.5 text-base font-semibold leading-7 text-gray-200 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
                             login
                         </a>
                         </div>
