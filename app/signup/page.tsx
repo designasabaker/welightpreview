@@ -181,28 +181,30 @@ export default function Signup(props: any) {
                                                 error={hasError}
                                                 helperText={helperText}
                                             />
-                                            <Button
-                                                hidden={item.ref !== 'email'}
-                                                variant="text"
-                                                size="small"
-                                                onClick={handleEmailVerification}
-                                                sx={{
-                                                margin: 'auto'
-                                            }}
-                                            >
-                                                Verify
-                                            </Button>
-                                            <Button
-                                                hidden={!isPassword}
-                                                variant="text"
-                                                size="small"
-                                                onClick={handleClickShowPassword}
-                                                sx={{
+                                            {
+                                                item.ref === 'email' && <Button
+                                                    variant="text"
+                                                    size="small"
+                                                    onClick={handleEmailVerification}
+                                                    sx={{
                                                     margin: 'auto'
                                                 }}
-                                            >
-                                                { showPassword ? 'Hide' : 'Show'}
-                                            </Button>
+                                                >
+                                                    Verify
+                                                </Button>
+                                            }
+                                            {
+                                                isPassword && <Button
+                                                    variant="text"
+                                                    size="small"
+                                                    onClick={handleClickShowPassword}
+                                                    sx={{
+                                                        margin: 'auto'
+                                                    }}
+                                                >
+                                                    {showPassword ? 'Hide' : 'Show'}
+                                                </Button>
+                                            }
                                         </Box>
                                     )
                                 })
