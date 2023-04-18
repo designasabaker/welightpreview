@@ -5,13 +5,16 @@ import {Box, Button, Stack, TextField} from "@mui/material";
 import {useUser} from "../../context/userStore"
 import Link from "next/link";
 import {useRouter} from "next/navigation";
-import Signup from "../signup/page"
+import Signup from "../signup/page";
+import "./loginSignup.css";
 
 export default function Login() {
     const router = useRouter()
     const { hasLoggedIn, setHasLoggedIn } = useUser()
     const [password, setPassword] = React.useState("")
     const [username, setUsername] = React.useState("")
+    // focus animation
+    const [isFocusOnLogin, setFocusOnLogin] = React.useState(true);
     const handleLogin = () => {
         let credential = {
             username,
@@ -41,41 +44,24 @@ export default function Login() {
             console.error("Invalid handling of textfield")
         }
     }
+
+
     return (
-    <Box justifyContent="center"
-         alignItems='center'
-            sx={{
-                display: 'flex',
-                width: '100%',
-                height: '70vh',
-                margin: 0,
-                marginTop: 10,
-            }}>
+    <Box
+        className="login-signup-box-container bg-white"
+    >
             {
                 !hasLoggedIn ? (
-                        <Box justifyContent="center"
-                             alignItems='center'
-                             sx={{
-                            display: 'inline-block',
-                            top: 0,
-                            width: '30%',
-                                 minWidth:'300px',
-                            height: '100%',
-                                 minHeight:'300px',
-                            margin: '0',
-                            marginTop: 5,
-                            border: 1,
-                                 borderRadius: '15px 0 0 15px',
-                            padding: 0,
-                            borderColor: 'white',
-                            backgroundColor: 'rgba(255,255,255,0.04)'
-                        }}> {/* put log-in box to the left side */}
+                        <Box
+                             className={`login-box ${isFocusOnLogin ? 'focused' : ''}`}
+                             onClick={() => {setFocusOnLogin(true)}}
+                             >
                             <Box sx={{
                                 textAlign: 'center',
                                 fontSize: '2em',
                                 marginTop:'40px',
                             }}>
-                                <h1>Sign In</h1>
+                                <h1>Login</h1>
                             </Box>
                             <Stack spacing={4} sx={{
                                 padding: 10,
@@ -98,7 +84,7 @@ export default function Login() {
                                 />
                                 <Stack direction="row" justifyContent="center" alignItems="center" spacing={2}>
                                     <Button variant="outlined" onClick={handleLogin}>Log in</Button>
-                                    <Button variant="outlined" href={'/signup'}>Register</Button>
+                                    {/*<Button variant="outlined" href={'/signup'}>Register</Button>*/}
                                 </Stack>
                             </Stack>
                         </Box>
@@ -117,7 +103,7 @@ export default function Login() {
                     </Box>
                 )
             }
-            <Signup ></Signup> {/* add the SIGN-UP here */}
+            <Signup isFocusOnLogin={isFocusOnLogin} setFocusOnLogin={setFocusOnLogin}/> {/* add the SIGN-UP here */}
     </Box>
     )
 }

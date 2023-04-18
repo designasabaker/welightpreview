@@ -6,17 +6,25 @@ module.exports = {
     './app/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        brandBlue: '#47A8E5',
+        brandDeepBlue: '#133A7C',
+      },
+    },
   },
-  plugins: [require("daisyui"), require('@tailwindcss/forms'),],
-  daisyui: {
-    styled: true,
-    themes: true,
-    base: true,
-    utils: true,
-    logs: true,
-    rtl: false,
-    prefix: "",
-    darkTheme: "night",
-  },
+  plugins: [require('@tailwindcss/forms')],
+  // plugins: [
+  //     require("daisyui"),
+  //   require('@tailwindcss/forms'),],
+  // daisyui: {
+  //   styled: true,
+  //   themes: true,
+  //   base: true,
+  //   utils: true,
+  //   logs: true,
+  //   rtl: false,
+  //   prefix: "",
+  //   darkTheme: "night",
+  // },
 }

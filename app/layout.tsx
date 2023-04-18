@@ -1,6 +1,6 @@
 "use client"
 
-import '../styles/globals.css'
+import '../styles/global.css'
 import Navbar from '../components/Navbar'
 import { UserProvider } from "../context/userStore";
 import React from "react";
@@ -13,8 +13,9 @@ export default function RouteLayout({
     return (
         <UserProvider>
             <html>
-                <head>
+                <head className="bg-white">
                     <title>WeLight</title>
+                    <link rel="icon" href="/welight-w.ico" />
                 </head>
                 <body>
                     <Navbar />

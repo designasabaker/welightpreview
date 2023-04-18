@@ -1,32 +1,33 @@
 "use client"
 import Link from "next/link";
 import React from "react";
-import {useUser} from "../context/userStore"
+import {useUser} from "../context/userStore";
+import Logo from "../components/Logo";
 
 export default function Navbar() {
     const { hasLoggedIn } = useUser()
     return (
-        <div className="navbar fixed top-0 left-0 w-full z-10"> {/* fixed */}
-            <div className="flex-1">
-                <Link href="/" className="btn btn-ghost normal-case text-xl">WeLight</Link>
-            </div>
-            <div className="flex-none">
-                <ul className="menu menu-horizontal px-1">
-                    <Link href="/pricing" className="btn btn-ghost normal-case text-lg">Plan</Link> {/*name changed from 'pricing'*/}
-                    <Link href="/about" className="btn btn-ghost normal-case text-lg">About Us</Link>
-                    {
-                        hasLoggedIn ? (
-                            <div className="flex-1">
-                                <Link href="/form" className="btn btn-ghost normal-case text-lg">Account</Link>
-                            </div>
-                        ) : (
-                            <div className="flex-1">
-                                <Link href="/login" className="btn btn-ghost normal-case text-lg">Login</Link>
-                                {/*<Link href="/signup" className="btn btn-ghost normal-case text-lg">Sign Up</Link>*/}
-                            </div>
-                        )
-                    }
-                </ul>
+        <div className="sticky top-0 left-0 w-full z-10 bg-white flex-row justify-between"> {/* fixed https://flowbite.com/docs/components/navbar/ */}
+            <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+                <div className="flex items-center">
+                    <Link href="/" className="flex items-center">
+                        <Logo />
+                        <span className="self-center text-xl font-bold">WeLight</span>
+                    </Link>
+                </div>
+                <div className="w-full md:block md:w-auto space-x-8" id="navbar-default">
+                    <ul className="flex-row">
+                        <Link href="/pricing" className="btn btn-ghost normal-case pl-3 text-lg">Plan</Link> {/*name changed from 'pricing'*/}
+                        <Link href="/about" className="btn btn-ghost normal-case pl-3 text-lg">About Us</Link>
+                        {
+                            hasLoggedIn ? (
+                               <Link href="/form" className="btn btn-ghost normal-case pl-3 text-lg">Account</Link>
+                            ) : (
+                            <Link href="/login" className="btn btn-ghost normal-case pl-3 text-lg">Login</Link>
+                            )
+                        }
+                    </ul>
+                </div>
             </div>
         </div>
     )
