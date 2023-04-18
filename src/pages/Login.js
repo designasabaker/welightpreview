@@ -1,19 +1,17 @@
 import React from "react";
+import { useState } from "react";
 import { Box, Button, Stack, TextField } from "@mui/material";
-import { useUser } from "../../context/userStore";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import Signup from "../signup/page";
+import { Link } from "react-router-dom";
+import Signup from "./Signup";
 import "../styles/login.css";
 
 export default function Login() {
-  const router = useRouter();
-  const { hasLoggedIn, setHasLoggedIn } = useUser();
-  const [password, setPassword] = React.useState("");
-  const [username, setUsername] = React.useState("");
+  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [hasLoggedIn, setHasLoggedIn] = useState(false);
   // focus animation
 
-  const [isFocusOnLogin, setFocusOnLogin] = React.useState(true);
+  const [isFocusOnLogin, setFocusOnLogin] = useState(true);
   const handleLogin = () => {
     let credential = {
       username,
@@ -22,7 +20,6 @@ export default function Login() {
     console.log(credential); // pass the credential to api
 
     if (username === "admin" && !hasLoggedIn) {
-      router.push("/form");
       setHasLoggedIn(true);
       console.log("successfully logged in");
     } else {
