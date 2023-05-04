@@ -75,10 +75,6 @@ export default function Profile() {
     if (userInfoJSON != null) setUserInfos(JSON.parse(userInfoJSON));
   }, []);
 
-  useEffect(() => {
-    console.log(userInfos);
-  }, [userInfos]);
-
   return (
     <div className="mx-20 py-9">
       <div>

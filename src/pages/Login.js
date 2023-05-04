@@ -4,6 +4,7 @@ import { Box, Button, Stack, TextField } from "@mui/material";
 import { Link } from "react-router-dom";
 import Signup from "./Signup";
 import "../styles/login.css";
+import BACKEND_BASE_LINK from "../env.js";
 
 export default function Login() {
   const [password, setPassword] = useState("");
@@ -12,12 +13,38 @@ export default function Login() {
   // focus animation
 
   const [isFocusOnLogin, setFocusOnLogin] = useState(true);
-  const handleLogin = () => {
+
+  async function handleLogin(){
     let credential = {
       username,
       password,
     };
     console.log(credential); // pass the credential to api
+
+    const options = {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: `{"username":${credential.username},"password":${credential.password}}`,
+    };
+
+    const response = await fetch(BACKEND_BASE_LINK + '/login', options);
+    // bug:  'Access-Control-Allow-Origin' header is present on the requested resource. If
+    switch (response.status) {
+      case 200:
+        // login success
+        const resData = await response.json();
+        const token = resData.token;
+        // bugs TO DO: wait for backend to fix the returned user id
+        localStorage.setItem('token', token);
+        setHasLoggedIn(true);
+        break;
+      case 401:
+        // login failed
+        console.error("login failed")
+        break;
+      default:
+        break;
+    }
 
     if (username === "admin" && !hasLoggedIn) {
       setHasLoggedIn(true);

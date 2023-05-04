@@ -1,0 +1,16 @@
+self.__RSC_CSS_MANIFEST={
+  "__entry_css_mods__": {
+    "D:\\welight\\Frontend\\app\\login\\page": [
+      "D:\\welight\\Frontend\\styles\\global.css",
+      "D:\\welight\\Frontend\\components\\LogoStyle.css",
+      "D:\\welight\\Frontend\\app\\login\\loginSignup.css"
+    ]
+  },
+  "D:\\welight\\Frontend\\app\\layout.tsx": [
+    "D:\\welight\\Frontend\\styles\\global.css",
+    "D:\\welight\\Frontend\\components\\LogoStyle.css"
+  ],
+  "D:\\welight\\Frontend\\app\\login\\page.tsx": [
+    "D:\\welight\\Frontend\\app\\login\\loginSignup.css"
+  ]
+}

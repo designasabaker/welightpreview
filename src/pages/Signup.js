@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Button, Grid, IconButton, Stack, TextField } from "@mui/material";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import { useState } from "react";
+import "../styles/login.css";
 
 const formItems = [
   {
