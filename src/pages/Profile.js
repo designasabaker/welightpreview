@@ -1,35 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
+import {getAuthToken} from "../utils";
+import BACKEND_BASE_LINK from "../env";
 
 const LOCAL_STORAGE_KEY = 'welightUserInformation';
-const sampleUserInfos = {
-  id: 1,
-  firstName: '',
-  lastName: '',
-  emailAddress: '',
-  phoneNumber: '000.000.0000',
-  companyWebsite: 'www.example.com',
-  country: '',
-  streetAddress: '',
-  city: '',
-  region: '',
-  postalCode: '',
-  website: 'www.me.com',
-  about: 'I am a software engineer',
-  // photo: '',?
-  avatar: '',
-  coverPhoto: '',
-  byEmail: {
-    comments: false,
-    candidates: false,
-    offers: false,
-  },
-  pushNotifications: {
-    everyThing: true,
-    sameAsEmail: false,
-    noPushNotifications: false,
-  },
-};
 
 export default function Profile() {
   const countryOptions = [
@@ -39,7 +13,7 @@ export default function Profile() {
     { value: 'Mexico', label: 'Mexico' },
   ];
 
-  const [userInfos, setUserInfos] = useState(sampleUserInfos);
+  // const [userInfos, setUserInfos] = useState(sampleUserInfos);
   //const { hasLoggedIn, setHasLoggedIn } = useUser();
 
   const handleChange = (eventOrSelectedOption) => {
@@ -65,10 +39,32 @@ export default function Profile() {
     setUserInfos({ ...userInfos, pushNotifications: { ...userInfos.pushNotifications, [id]: checked } });
   };
 
-  const handleSave = (e) => {
+  const token = getAuthToken();
+
+  async function handleSave (e){
     e.preventDefault();
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(userInfos));
-  };
+    const options = {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json',
+        'Authorization': token},
+      body: userInfos,
+    };
+    const response = await fetch(BACKEND_BASE_LINK + '/add_profile', options);
+    switch (response.status) {
+      case 200:
+        // update successfully
+        console.log("update successfully");
+        break;
+      case 401:
+        // create successfully
+        console.log("create successfully");
+        break;
+      default:
+        console.log("error");
+        break;
+    }
+  }
 
   useEffect(() => {
     const userInfoJSON = localStorage.getItem(LOCAL_STORAGE_KEY);
