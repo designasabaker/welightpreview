@@ -1,11 +1,12 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, {useContext} from "react";
 import { Link } from "react-router-dom";
 import WeLightLogo from "../assets/WeLightLogo.svg";
 import { useState } from "react";
+import { AppContext } from "../context/appContext";
 
 export default function Navbar() {
-  const [hasLoggedIn, setHasLoggedIn] = useState(false);
+  const {hasLoggedIn, setHasLoggedIn} = useContext(AppContext);
   return (
     <div className="sticky top-0 left-0 w-full z-10 bg-white flex-row justify-between">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">

@@ -1,18 +1,18 @@
-import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Box, Button, Stack, TextField } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Signup from "./Signup";
 import "../styles/login.css";
 import BACKEND_BASE_LINK from "../env.js";
+import {AppContext} from "../context/appContext"
 
 export default function Login() {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
-  const [hasLoggedIn, setHasLoggedIn] = useState(false);
-  // focus animation
+  const [isFocusOnLogin, setFocusOnLogin] = useState(true);   // focus animation
 
-  const [isFocusOnLogin, setFocusOnLogin] = useState(true);
+  const {hasLoggedIn, setHasLoggedIn} = useContext(AppContext);
+  const navigate = useNavigate();
 
   async function handleLogin(){
     let credential = {
@@ -20,6 +20,19 @@ export default function Login() {
       password,
     };
     console.log(credential); // pass the credential to api
+
+    if (username === "admin" && !hasLoggedIn) {
+      setHasLoggedIn(true);
+      navigate("/profile");
+      console.log("successfully logged in");
+      return;
+    } else {
+      console.error(
+          `login failed - ${
+              hasLoggedIn ? "Already Logged in" : "Wrong username or password"
+          }`
+      );
+    }
 
     const options = {
       method: 'POST',
@@ -46,16 +59,6 @@ export default function Login() {
         break;
     }
 
-    if (username === "admin" && !hasLoggedIn) {
-      setHasLoggedIn(true);
-      console.log("successfully logged in");
-    } else {
-      console.error(
-        `login failed - ${
-          hasLoggedIn ? "Already Logged in" : "Wrong username or password"
-        }`
-      );
-    }
   };
 
   const handleTextFieldChange = (event) => {
