@@ -5,21 +5,7 @@ import ProfileProvider, {ProfileContext} from "../context/profileContext";
 import {BasicInfo, TestScore, Awards, Activities} from "../components/ProfileComponents";
 import ProfileNextButton from "../components/ProfileComponents/ProfileNextButton";
 
-function renderSwitch(param) {
-    switch(param) {
-        case "test-score":
-            return <TestScore/>
-        case "awards":
-            return <Awards/>
-        case "activities":
-            return <Activities/>
-        default:
-            return <BasicInfo/>;
-    }
-}
-
 function Profile(){
-    const partParam = useParams().part;
 
     return(
         // <>
@@ -40,11 +26,7 @@ function Profile(){
         //     </ProfileProvider>
         // </>
         <>
-            <ProfileProvider>
-                <ProfileNavbar/>
-                {renderSwitch(partParam)}
-                <ProfileNextButton partParam={"/profile/" +  partParam} />
-            </ProfileProvider>
+            Welcome :)
         </>
     )
 }

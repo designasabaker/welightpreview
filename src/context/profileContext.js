@@ -32,7 +32,6 @@ const nextProfileComponentPath = (currentProfileComponentPath) => {
         console.log("navlink successfully found",index);
         return navLinks[(index+1) % navLinks.length].path;
     }
-    return "";
 }
 
 export const ProfileContext = createContext({});

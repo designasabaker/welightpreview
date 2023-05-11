@@ -4,22 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4c96525-358b-4afd-b385-e7b0b4fafcff" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/ProfileComponents/Activities.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ProfileComponents/Awards.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ProfileComponents/BasicInfo.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ProfileComponents/ProfileNavbar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ProfileComponents/ProfileNextButton.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ProfileComponents/TestScore.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ProfileComponents/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/context/appContext.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/context/profileContext.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/ProfileLegacy.js" afterDir="false" />
+    <list default="true" id="f4c96525-358b-4afd-b385-e7b0b4fafcff" name="Changes" comment="Updating Profile Page">
+      <change afterPath="$PROJECT_DIR$/src/pages/ProfileSharedLayout.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/SingleProfilePart.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/context/profileContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/profileContext.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Profile.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,22 +35,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/welight/Frontend",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2022.3.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/welight/Frontend&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2022.3.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\welight\Frontend\src" />
@@ -78,8 +68,18 @@
       <workItem from="1683401283491" duration="385000" />
       <workItem from="1683404922805" duration="1692000" />
       <workItem from="1683409628868" duration="8365000" />
-      <workItem from="1683428023784" duration="7310000" />
+      <workItem from="1683428023784" duration="8338000" />
+      <workItem from="1683473428994" duration="1219000" />
+      <workItem from="1683774516323" duration="1354000" />
     </task>
+    <task id="LOCAL-00001" summary="Updating Profile Page">
+      <created>1683435819015</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1683435819015</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -107,5 +107,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Updating Profile Page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updating Profile Page" />
   </component>
 </project>

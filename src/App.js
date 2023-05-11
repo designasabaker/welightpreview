@@ -8,6 +8,8 @@ import Profile from "./pages/Profile";
 import Pricing from './pages/Pricing';
 
 import AppProvider from "./context/appContext";
+import ProfileSharedLayout from "./pages/ProfileSharedLayout";
+import SingleProfilePart from "./pages/SingleProfilePart";
 
 function App() {
 
@@ -16,11 +18,13 @@ function App() {
         <BrowserRouter>
           <Navbar />
           <Routes>
-            <Route exact path="/" element={<Home/>} />
-            <Route exact path="/login" element={<Login/>} />
-            {/*<Route exact path="/profile" element={<Profile/>} />*/}
-            <Route exact path="/profile/:part" element={<Profile/>} />
-            <Route exact path="/pricing" element={<Pricing/>} />
+            <Route path="/" element={<Home/>} />
+            <Route path="/login" element={<Login/>} />
+            <Route path="/profile" element={<ProfileSharedLayout/>} >
+                <Route index element={<Profile/>} />
+                <Route path=":singlePartId" element={<SingleProfilePart/>} />
+            </Route>
+            <Route path="/pricing" element={<Pricing/>} />
           </Routes>
         </BrowserRouter>
       </AppProvider>
