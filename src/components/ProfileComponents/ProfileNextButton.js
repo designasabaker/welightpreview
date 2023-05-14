@@ -8,9 +8,6 @@ export default function ProfileNextButton({partParam}) {
 
     return (
         <button onClick={()=>{
-            console.log("next");
-            console.log("partParam",partParam);
-            console.log("nextProfileComponentPath(partParam)",nextProfileComponentPath(partParam));
             navigate(nextProfileComponentPath(partParam));
         }}>Next</button>
     )
