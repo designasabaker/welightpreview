@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f4c96525-358b-4afd-b385-e7b0b4fafcff" name="Changes" comment="Updating Profile Page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ProfileComponents/ProfileNextButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProfileComponents/ProfileNextButton.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ProfileSharedLayout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ProfileSharedLayout.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +67,9 @@
       <workItem from="1683473428994" duration="1219000" />
       <workItem from="1683774516323" duration="1421000" />
       <workItem from="1683831232859" duration="786000" />
-      <workItem from="1684078887227" duration="661000" />
+      <workItem from="1684078887227" duration="2020000" />
+      <workItem from="1684104036463" duration="54000" />
+      <workItem from="1684786926739" duration="112000" />
     </task>
     <task id="LOCAL-00001" summary="Updating Profile Page">
       <created>1683435819015</created>
