@@ -2,11 +2,14 @@ import { useState, useContext } from "react";
 import { Box, Button, Stack, TextField } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import Signup from "./Signup";
-import "../styles/login.css";
+// import "../styles/login.css";
 import BACKEND_BASE_LINK from "../env.js";
 import {AppContext} from "../context/appContext"
+import {LoginBox} from "../components/LoginComponents";
+import SignUpBox from "../components/LoginComponents/SignUpBox";
 
 export default function Login() {
+
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [isFocusOnLogin, setFocusOnLogin] = useState(true);   // focus animation
@@ -72,61 +75,21 @@ export default function Login() {
   }
 };
 
+  console.log("isFocusOnLogin: ", isFocusOnLogin);
+
   return (
-    <Box className="login-signup-box-container bg-white">
-      {!hasLoggedIn ? (
-        <Box
-          className={`login-box ${isFocusOnLogin ? "focused" : ""}`}
-          onClick={() => {
-            setFocusOnLogin(true);
-          }}
-        >
-          <Box
-            sx={{
-              textAlign: "center",
-              fontSize: "2em",
-              marginTop: "40px",
-            }}
-          >
-            <h1>Login</h1>
-          </Box>
-          <Stack
-            spacing={4}
-            sx={{
-              padding: 10,
-              margin: "auto",
-              maxWidth: 500,
-            }}
-          >
-            <p>Username</p>
-            <TextField
-              required
-              variant="standard"
-              id="username-text-field"
-              onChange={handleTextFieldChange}
-            />
-            <p>Password</p>
-            <TextField
-              required
-              variant="standard"
-              id="password-text-field"
-              onChange={handleTextFieldChange}
-            />
-            <Stack
-              direction="row"
-              justifyContent="center"
-              alignItems="center"
-              spacing={2}
-            >
-              <Button variant="outlined" onClick={handleLogin}>
-                Log in
-              </Button>
-              {/*<Button variant="outlined" href={'/signup'}>Register</Button>*/}
-            </Stack>
-          </Stack>
-        </Box>
-      ) : (
-        <Box
+    <div className="flex flex-row justify-center gap-4">
+      {!hasLoggedIn
+       ?
+        (isFocusOnLogin
+          ?
+          <LoginBox setFocusOnLogin={setFocusOnLogin} handleTextFieldChange={handleTextFieldChange} handleLogin={handleLogin} />
+          :
+          <SignUpBox setFocusOnLogin={setFocusOnLogin}/>
+        )
+      :
+      (
+        <div
           sx={{
             display: "inline-block",
             width: "50%",
@@ -140,13 +103,13 @@ export default function Login() {
               My Account
             </Link>
           </p>
-        </Box>
+        </div>
       )}
-      <Signup
-        isFocusOnLogin={isFocusOnLogin}
-        setFocusOnLogin={setFocusOnLogin}
-      />{" "}
+      {/*<Signup*/}
+      {/*  isFocusOnLogin={isFocusOnLogin}*/}
+      {/*  setFocusOnLogin={setFocusOnLogin}*/}
+      {/*/>*/}
       {/* add the SIGN-UP here */}
-    </Box>
+    </div>
   );
 }
