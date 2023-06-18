@@ -141,7 +141,7 @@ export default function SignUpBox({setFocusOnLogin }) {
             initial={{ opacity: 0, y: 100 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className={`flex flex-row rounded-md border-black/0.4 px-12 py-4}`}>
+            className={`flex flex-row rounded-md border-black/0.4 px-24 py-9 shadow-lg rounded-lg}`}>
             <div>
             <Box
                 style={{

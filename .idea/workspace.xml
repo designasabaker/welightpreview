@@ -5,14 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e987fc38-2012-4a75-a744-d851f6912428" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/ProfileComponents/style.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Data/ImageGallery/data.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data/ImageGallery/data.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ImageGallery/GalleryNextBtn.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ImageGallery/GalleryNextBtn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ImageGallery/GalleryPrevBtn.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ImageGallery/GalleryPrevBtn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ImageGallery/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ImageGallery/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LoginComponents/LoginBox.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LoginComponents/LoginBox.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LoginComponents/SignUpBox.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LoginComponents/SignUpBox.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ProfileComponents/Activities.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProfileComponents/Activities.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ProfileComponents/Awards.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProfileComponents/Awards.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ProfileComponents/BasicInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProfileComponents/BasicInfo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ProfileComponents/ProfileNavbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProfileComponents/ProfileNavbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ProfileComponents/TestScore.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProfileComponents/TestScore.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/context/profileContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/profileContext.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/SingleProfilePart.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SingleProfilePart.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +94,8 @@
       <workItem from="1683774516323" duration="1421000" />
       <workItem from="1683831232859" duration="786000" />
       <workItem from="1684078887227" duration="661000" />
-      <workItem from="1687063046289" duration="2299000" />
+      <workItem from="1687063046289" duration="3116000" />
+      <workItem from="1687109079589" duration="4093000" />
     </task>
     <task id="LOCAL-00001" summary="Updating Profile Page">
       <created>1683435819015</created>
