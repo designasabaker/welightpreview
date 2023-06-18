@@ -3,11 +3,14 @@ import ProfileNavbar from "../components/ProfileComponents/ProfileNavbar";
 import React from "react";
 import {Outlet} from "react-router-dom";
 
+
 const ProfileSharedLayout = () => {
     return (<>
         <ProfileProvider>
-            <ProfileNavbar/>
-            <Outlet />
+            <div className={"grid grid-cols-[300px_1fr]"}>
+                <ProfileNavbar/>
+                <Outlet />
+            </div>
         </ProfileProvider>
     </>)
 }

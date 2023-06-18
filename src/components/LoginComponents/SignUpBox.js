@@ -24,6 +24,7 @@ const formItems = [
     },
 ];
 
+// eslint-disable-next-line react/prop-types
 export default function SignUpBox({setFocusOnLogin }) {
     const [textFieldErrors, setTextFieldErrors] = useState({
         password: false,

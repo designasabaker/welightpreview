@@ -1,4 +1,4 @@
-import React, {createContext, useState} from "react";
+import React, {createContext, useContext, useState} from "react";
 
 
 const initialUserInfo = {
@@ -17,7 +17,7 @@ const initialUserInfo = {
         "a": "anything in json format"
     }
 }
-const navLinks = [
+export const navLinks = [
     { id:1, title: 'Basic Info', path: '/profile/basic-info' }, // abs path
     { id:2, title: 'Test Score', path: '/profile/test-score' },
     { id:3, title: 'Awards', path: '/profile/awards' },
@@ -34,17 +34,37 @@ const nextProfileComponentPath = (currentProfileComponentPath) => {
     }
 }
 
+const previousProfileComponentPath = (currentProfileComponentPath) => {
+    const index = navLinks.findIndex((link) => link.path === currentProfileComponentPath);
+    if(index === -1){
+        console.log("navlink index not found");
+        return "";
+    }else{
+        console.log("navlink successfully found",index);
+        return navLinks[(index-1) % navLinks.length].path;
+    }
+}
+
 export const ProfileContext = createContext({});
 
 function ProfileProvider({children}) {
     // const [currentProfileComponentId, setCurrentProfileComponentId] = useState(0);
     const [userInfo, setUserInfo] = useState(initialUserInfo);
 
+    const handleProfileOnChange = (e) => {
+        e.preventDefault();
+        const name = e.target.name;
+        const value = e.target.value;
+        setUserInfo({...userInfo, [name]: value});
+    }
+
     return (
-        <ProfileContext.Provider value={{userInfo, setUserInfo, navLinks,nextProfileComponentPath}}>
+        <ProfileContext.Provider value={{userInfo, setUserInfo, navLinks,nextProfileComponentPath,previousProfileComponentPath,handleProfileOnChange}}>
             {children}
         </ProfileContext.Provider>
     );
 }
 
+
+export const useProfileContext = () => useContext(ProfileContext);
 export default ProfileProvider;

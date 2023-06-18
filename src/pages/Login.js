@@ -1,12 +1,11 @@
-import { useState, useContext } from "react";
-import { Box, Button, Stack, TextField } from "@mui/material";
+import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Signup from "./Signup";
-// import "../styles/login.css";
 import BACKEND_BASE_LINK from "../env.js";
 import {AppContext} from "../context/appContext"
 import {LoginBox} from "../components/LoginComponents";
 import SignUpBox from "../components/LoginComponents/SignUpBox";
+import ImageGallery from "../components/ImageGallery";
+import { motion } from "framer-motion"
 
 export default function Login() {
 
@@ -48,7 +47,9 @@ export default function Login() {
     switch (response.status) {
       case 200:
         // login success
+        // eslint-disable-next-line no-case-declarations
         const resData = await response.json();
+        // eslint-disable-next-line no-case-declarations
         const token = resData.token;
         // bugs TO DO: wait for backend to fix the returned user id
         localStorage.setItem('token', token);
@@ -62,7 +63,7 @@ export default function Login() {
         break;
     }
 
-  };
+  }
 
   const handleTextFieldChange = (event) => {
   let targetId = event.target.id;
@@ -83,19 +84,20 @@ export default function Login() {
        ?
         (isFocusOnLogin
           ?
-          <LoginBox setFocusOnLogin={setFocusOnLogin} handleTextFieldChange={handleTextFieldChange} handleLogin={handleLogin} />
+          <motion.div
+               initial={{ opacity: 0, y: 100 }}
+               animate={{ opacity: 1, y: 0 }}
+               transition={{ duration: 0.5 }}
+               className={"flex flex-row rounded-lg shadow-lg"}>
+            <LoginBox setFocusOnLogin={setFocusOnLogin} handleTextFieldChange={handleTextFieldChange} handleLogin={handleLogin} />
+            <ImageGallery />
+          </motion.div>
           :
           <SignUpBox setFocusOnLogin={setFocusOnLogin}/>
         )
       :
       (
-        <div
-          sx={{
-            display: "inline-block",
-            width: "50%",
-            margin: "0",
-          }}
-        >
+        <div>
           <h1>Successfully logged in, redirecting...</h1>
           <p>
             If redirection not working, click this link

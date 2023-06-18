@@ -26,7 +26,9 @@ function Profile(){
         //     </ProfileProvider>
         // </>
         <>
-            Welcome :)
+            <div >
+
+            </div>
         </>
     )
 }

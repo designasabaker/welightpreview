@@ -20,7 +20,7 @@ module.exports = {
         colors: {
         brandBlue: '#47A8E5',
         brandDeepBlue: '#133A7C',
-      }
+      },
     },
   },
   plugins: [],
