@@ -2,7 +2,12 @@ import React from "react";
 import { Box, Button, Grid, IconButton, Stack, TextField } from "@mui/material";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import { useState } from "react";
+<<<<<<< HEAD
 // import "../styles/login.css";
+=======
+import "../styles/login.css";
+import BACKEND_BASE_LINK from "../env.js";
+>>>>>>> 3ef90b4d2d09f17c13323e9be8d60fc060ba3da6
 
 const formItems = [
   {
@@ -84,6 +89,16 @@ export default function Signup({ isFocusOnLogin, setFocusOnLogin }) {
         password,
       };
       console.log(credential); // pass the credential to api
+      const options = {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: `{"username":${credential.email},"email":${credential.email},"password":${credential.password}}`
+      };
+
+      fetch(BACKEND_BASE_LINK + '/register', options)
+          .then(response => response.json())
+          .then(response => console.log(response))
+          .catch(err => console.error(err));
     } else {
       console.error("Wrong input");
     }
@@ -214,13 +229,6 @@ export default function Signup({ isFocusOnLogin, setFocusOnLogin }) {
                 </Box>
               );
             })}
-
-            <Button
-              variant="outlined"
-              onClick={() => (window.location.href = "/signup")}
-            >
-              Register
-            </Button>
           </Stack>
         </Grid>
         <Grid item xs={5} style={{ margin: "auto", textAlign: "center" }}>
