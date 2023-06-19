@@ -8,7 +8,7 @@ export const LoginBox = (props) => {
 
     return(
         <>
-            <div className={`min-w-[300px] flex flex-col text-center p-12 border-black/0.4`}>
+            <div className={`min-w-[300px] max-w-[600px] flex flex-col text-center p-12 border-black/0.4`}>
                 <div className={"my-6"}>
                     <h1 className={"text-2xl "}>Login</h1>
                     <p className={"text-xs font-sans font-thin mt-1 text-gray-500"}>Welcome back! Please enter your details.</p>

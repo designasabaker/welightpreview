@@ -79,6 +79,7 @@ export default function Login() {
   console.log("isFocusOnLogin: ", isFocusOnLogin);
 
   return (
+    <div className="flex flex-col px-16 justify-center h-screen">
     <div className="flex flex-row justify-center gap-4">
       {!hasLoggedIn
        ?
@@ -88,7 +89,7 @@ export default function Login() {
                initial={{ opacity: 0, y: 100 }}
                animate={{ opacity: 1, y: 0 }}
                transition={{ duration: 0.5 }}
-               className={"flex flex-row rounded-lg shadow-lg mt-12"}>
+               className={"flex flex-row rounded-lg shadow-lg"}>
             <LoginBox setFocusOnLogin={setFocusOnLogin} handleTextFieldChange={handleTextFieldChange} handleLogin={handleLogin} />
             <ImageGallery />
           </motion.div>
@@ -107,11 +108,7 @@ export default function Login() {
           </p>
         </div>
       )}
-      {/*<Signup*/}
-      {/*  isFocusOnLogin={isFocusOnLogin}*/}
-      {/*  setFocusOnLogin={setFocusOnLogin}*/}
-      {/*/>*/}
-      {/* add the SIGN-UP here */}
+    </div>
     </div>
   );
 }
