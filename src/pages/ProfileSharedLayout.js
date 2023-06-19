@@ -7,9 +7,11 @@ import {Outlet} from "react-router-dom";
 const ProfileSharedLayout = () => {
     return (<>
         <ProfileProvider>
-            <div className={"grid grid-cols-[300px_1fr]"}>
-                <ProfileNavbar/>
-                <Outlet />
+            <div className={"mt-[120px]"}>
+                <div className={"grid grid-cols-[300px_1fr]"}>
+                    <ProfileNavbar/>
+                    <Outlet />
+                </div>
             </div>
         </ProfileProvider>
     </>)
