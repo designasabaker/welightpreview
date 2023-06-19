@@ -1,4 +1,5 @@
 import React, {createContext, useContext, useState} from "react";
+import {useParams} from "react-router-dom";
 
 
 const initialUserInfo = {
@@ -48,7 +49,7 @@ const previousProfileComponentPath = (currentProfileComponentPath) => {
 export const ProfileContext = createContext({});
 
 function ProfileProvider({children}) {
-    // const [currentProfileComponentId, setCurrentProfileComponentId] = useState(0);
+    const [currentProfileComponentId, setCurrentProfileComponentId] = useState(-1);
     const [userInfo, setUserInfo] = useState(initialUserInfo);
 
     const handleProfileOnChange = (e) => {
@@ -58,8 +59,32 @@ function ProfileProvider({children}) {
         setUserInfo({...userInfo, [name]: value});
     }
 
+    const handleProfileComponentIdOnChange = (pathName) => {
+        const id = navLinks.filter((link) => link.path === `/profile/${pathName}`)[0].id;
+        console.log(id);
+        setCurrentProfileComponentId(id);
+    }
+
+    const updateComponentIdByParams = () => {
+        const {singlePartId} = useParams();
+        if(singlePartId){
+            const id = navLinks.filter((link) => link.path === `/profile/${singlePartId}`)[0].id;
+            console.log(id);
+            setCurrentProfileComponentId(id);
+        }
+    }
+
     return (
-        <ProfileContext.Provider value={{userInfo, setUserInfo, navLinks,nextProfileComponentPath,previousProfileComponentPath,handleProfileOnChange}}>
+        <ProfileContext.Provider
+            value={{userInfo,
+                setUserInfo,
+                navLinks,
+                nextProfileComponentPath,
+                previousProfileComponentPath,
+                handleProfileOnChange,
+                currentProfileComponentId,
+                handleProfileComponentIdOnChange,
+                updateComponentIdByParams}}>
             {children}
         </ProfileContext.Provider>
     );

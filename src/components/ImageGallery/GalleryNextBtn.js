@@ -1,11 +1,15 @@
+import {faCircleChevronRight} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+
 export const GalleryNextBtn = (props) => {
     const {onClick} = props;
 
     return(
         <button
             onClick={onClick}
+            className={"px-3"}
         >
-            Next
+            <FontAwesomeIcon icon={faCircleChevronRight} style={{color: "#ffffff",}} />
         </button>
     )
 }
