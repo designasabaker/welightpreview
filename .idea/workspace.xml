@@ -7,9 +7,12 @@
     <list default="true" id="e987fc38-2012-4a75-a744-d851f6912428" name="Changes" comment="Fix login box center issue">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Navbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Navbar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ProfileComponents/BasicInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProfileComponents/BasicInfo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/RequireStar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/RequireStar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/context/profileContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/profileContext.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ProfileComponents/ProfileNavbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProfileComponents/ProfileNavbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/ProfileSharedLayout.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ProfileSharedLayout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +100,7 @@
       <workItem from="1687208649239" duration="709000" />
       <workItem from="1687232522039" duration="2066000" />
       <workItem from="1687620425868" duration="656000" />
-      <workItem from="1687983353964" duration="8452000" />
+      <workItem from="1687983353964" duration="11287000" />
     </task>
     <task id="LOCAL-00001" summary="Updating Profile Page">
       <created>1683435819015</created>

@@ -22,7 +22,7 @@ export default function BasicInfo() {
     updateComponentIdByParams();
 
     return (
-        <>
+        <section>
             <h2>Basic Info</h2>
             <div className={"profileDiv"}>
                 <label htmlFor="firstName">First Name<RequireStar /></label>
@@ -116,7 +116,7 @@ export default function BasicInfo() {
                     </div>
                 </div>
             </div>
-        </>
+        </section>
     );
 }
 

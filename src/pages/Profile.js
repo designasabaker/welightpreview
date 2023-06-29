@@ -16,7 +16,7 @@ function Profile(){
 
                 Thank you for being a valued member of our community!</p>
             <button
-                className={`w-full h-12 bg-blue-500 hover:bg-blue-700 text-white font-bold mt-6 py-2 px-4 rounded`}
+                className={`w-full h-12 bg-blue-500 hover:bg-blue-700 text-white font-bold my-6 py-2 px-4 rounded`}
                 onClick={()=>{
                     navigate("/profile/basic-info");
                 }}>

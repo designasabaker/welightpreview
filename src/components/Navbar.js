@@ -29,7 +29,7 @@ export default function Navbar() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         className="fixed top-0 left-0 w-full z-10 bg-transparent flex-row justify-between">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+      <div className="bg-transparent max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <div className="flex items-center">
           <Link to="/" className="flex items-center">
             <img src={WeLightLogo} alt="WeLight Logo" className="w-15 pr-4" />
