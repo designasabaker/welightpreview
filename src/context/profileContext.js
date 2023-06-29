@@ -4,19 +4,25 @@ import {useParams} from "react-router-dom";
 
 const initialUserInfo = {
     "user_id": "3",
-    "name": "maxwell",
+    "firstName": "Tom",
+    "lastName": "Hanks",
+    "name": "",
+    "gender":"",
+    "birthDate": "",
     "age": 1,
     "activities": {
         "a": "anything in json format"
     },
     "nation": "China",
     "school": "Wild Chicken",
+    "location": "",
     "gpa": 3.9999,
     "gpa_cap": 4.1,
-    "major": "CS",
+    "major": "",
     "exam": {
         "a": "anything in json format"
-    }
+    },
+    "language": "",
 }
 export const navLinks = [
     { id:1, title: 'Basic Info', path: '/profile/basic-info' }, // abs path
@@ -52,11 +58,15 @@ function ProfileProvider({children}) {
     const [currentProfileComponentId, setCurrentProfileComponentId] = useState(-1);
     const [userInfo, setUserInfo] = useState(initialUserInfo);
 
-    const handleProfileOnChange = (e) => {
+    const handleProfileOnChange = (e,name=e.target.name,value=e.target.value) => {
         e.preventDefault();
-        const name = e.target.name;
-        const value = e.target.value;
-        setUserInfo({...userInfo, [name]: value});
+        // name = e.target.name;
+        // value = e.target.value;
+        setUserInfo((prevUserInfo) => ({
+            ...prevUserInfo,
+            [name]: value
+        }));
+        console.log(userInfo);
     }
 
     const handleProfileComponentIdOnChange = (pathName) => {

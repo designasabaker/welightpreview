@@ -6,8 +6,8 @@ export default function ProfileNavbar() {
     const {navLinks, currentProfileComponentId} = useProfileContext();
 
     return (
-        <>
-            <div className="flex flex-col px-3 text-center">
+        <div>
+            <div className="flex flex-col px-3 pt-6 text-center bg-white overflow-hidden">
                 {navLinks.map((link, index) => (
                     <NavLink
                         className={`text-md  hover:text-slate-600 py-2 `+
@@ -18,6 +18,6 @@ export default function ProfileNavbar() {
                         {link.title}
                     </NavLink>))}
             </div>
-        </>
+        </div>
     )
 }

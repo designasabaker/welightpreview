@@ -20,6 +20,11 @@ module.exports = {
         colors: {
         brandBlue: '#47A8E5',
         brandDeepBlue: '#133A7C',
+        fontFamily: {
+            body: 'var(--font-dm-sans)',
+            heading: 'var(--font-dm-serif)',
+            label: ['Inter','Helvetica, Arial, sans-serif'],
+        },
       },
     },
   },
