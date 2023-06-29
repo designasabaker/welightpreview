@@ -22,7 +22,7 @@ export const LoginBox = (props) => {
                         id="username-text-field"
                         onChange={handleTextFieldChange}
                         placeholder={"Username"}
-                        className={"border-b border-b-black/0.4 focus:outline-none focus:border-b-blue-500 transition-all ease-in-out duration-300"}
+                        className={"border-none border-b border-b-black/0.4 focus:outline-none focus:border-b-blue-500 transition-all ease-in-out duration-300"}
                     />
                     {/*<p className={"mt-3"}>Password</p>*/}
                     <input
@@ -31,7 +31,7 @@ export const LoginBox = (props) => {
                         id="password-text-field"
                         onChange={handleTextFieldChange}
                         placeholder={"Password"}
-                        className={"border-b border-b-black/0.4 focus:outline-none focus:border-blue-500 transition-all ease-in-out duration-300"}
+                        className={"border-none border-b border-b-black/0.4 focus:outline-none focus:border-blue-500 transition-all ease-in-out duration-300"}
                     />
                 </div>
                 <div className={"flex flex-col text-md"}>
