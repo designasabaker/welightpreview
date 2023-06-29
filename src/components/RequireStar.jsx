@@ -1,3 +1,3 @@
-export const RequireStar = () => <span className="req">*</span>;
+export const RequireStar = () => <span className="required">*</span>;
 
 export default RequireStar;

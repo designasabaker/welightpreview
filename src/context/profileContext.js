@@ -7,15 +7,18 @@ const initialUserInfo = {
     "firstName": "Tom",
     "lastName": "Hanks",
     "name": "",
+    "gender":"",
+    "birthDate": "",
     "age": 1,
     "activities": {
         "a": "anything in json format"
     },
     "nation": "China",
     "school": "Wild Chicken",
+    "location": "",
     "gpa": 3.9999,
     "gpa_cap": 4.1,
-    "major": "CS",
+    "major": "",
     "exam": {
         "a": "anything in json format"
     },
@@ -55,10 +58,10 @@ function ProfileProvider({children}) {
     const [currentProfileComponentId, setCurrentProfileComponentId] = useState(-1);
     const [userInfo, setUserInfo] = useState(initialUserInfo);
 
-    const handleProfileOnChange = (e) => {
+    const handleProfileOnChange = (e,name=e.target.name,value=e.target.value) => {
         e.preventDefault();
-        const name = e.target.name;
-        const value = e.target.value;
+        // name = e.target.name;
+        // value = e.target.value;
         setUserInfo((prevUserInfo) => ({
             ...prevUserInfo,
             [name]: value

@@ -8,7 +8,7 @@
 * {
   font-family: "Nunito", "Roboto", sans-serif;
   font-weight: 800;
-  color: black;
+  box-sizing: border-box;
 }
 
 h1 {
@@ -18,15 +18,24 @@ h1 {
 
 @layer base{
   h2{
-    @apply text-xl font-bold text-gray-800 mt-3;
+    @apply text-xl font-bold text-gray-800 mt-3 py-3;
+  }
+  .profileDiv{
+    @apply flex flex-row items-center pt-1;
   }
   label{
-    @apply font-semibold m-0 px-3 py-1;
+    @apply inline-block font-semibold mr-0 ml-12 my-0 px-0 py-1 overflow-hidden w-24;
   }
-  .req{
-    @apply text-red-500 pl-1;
+  input,select{
+    @apply inline-block border border-gray-300 ml-0 mr-6 my-0 px-2 py-0 overflow-hidden;
   }
-  input{
-    @apply border-b border-gray-300 w-24 m-0 px-1 py-1;
+  .wider-input{
+    @apply w-48;
+  }
+  .shorter-input{
+    @apply w-24;
+  }
+  .required{
+    @apply text-red-500;
   }
 }
