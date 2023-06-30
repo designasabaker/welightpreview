@@ -6,8 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="e987fc38-2012-4a75-a744-d851f6912428" name="Changes" comment="Fix login box center issue">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/LoginComponents/LoginBox.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LoginComponents/LoginBox.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ProfileComponents/BasicInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProfileComponents/BasicInfo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ProfileComponents/ProfileNextButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProfileComponents/ProfileNextButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ProfileComponents/ProfilePreviousButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProfileComponents/ProfilePreviousButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/context/profileContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/profileContext.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/SingleProfilePart.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SingleProfilePart.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +99,12 @@
       <workItem from="1687232522039" duration="2066000" />
       <workItem from="1687620425868" duration="656000" />
       <workItem from="1687983353964" duration="12450000" />
-      <workItem from="1688006881827" duration="63000" />
+      <workItem from="1688006881827" duration="539000" />
+      <workItem from="1688049422653" duration="16000" />
+      <workItem from="1688050190636" duration="799000" />
+      <workItem from="1688076101125" duration="629000" />
+      <workItem from="1688090055155" duration="172000" />
+      <workItem from="1688159134075" duration="2772000" />
     </task>
     <task id="LOCAL-00001" summary="Updating Profile Page">
       <created>1683435819015</created>
