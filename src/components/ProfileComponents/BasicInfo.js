@@ -140,7 +140,7 @@ export default function BasicInfo() {
             <div className={"flex flex-row px-24 py-6"}>
                 <div className={"flex-grow"} />
                 <ProfilePreviousButton partParam={`/profile/${singlePartId}`} isActive={singlePartId !== 'basic-info'} />
-                <ProfileNextButton checkRequiredFilled={checkRequiredFilled} isRequiredFilled={isRequiredFilled} canShowAlert={canShowAlert} setCanShowAlert={setCanShowAlert} partParam={`/profile/${singlePartId}`} isActive={singlePartId !== "activities"} />
+                <ProfileNextButton isRequiredFilled={isRequiredFilled} canShowAlert={canShowAlert} setCanShowAlert={setCanShowAlert} partParam={`/profile/${singlePartId}`} isActive={singlePartId !== "activities"} />
             </div>
         </section>
     );
