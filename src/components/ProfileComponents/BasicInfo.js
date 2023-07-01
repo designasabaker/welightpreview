@@ -3,8 +3,12 @@ import {useProfileContext} from "../../context/profileContext";
 
 import {titleStyle, subTitleStyle, divStyle, labelStyle, inputStyle} from "./style";
 import RequireStar from "../RequireStar";
+import ProfilePreviousButton from "./ProfilePreviousButton";
+import ProfileNextButton from "./ProfileNextButton";
+import {useParams} from "react-router-dom";
 
 export default function BasicInfo() {
+    const singlePartId = useParams().singlePartId;
     const {userInfo, handleProfileOnChange, updateComponentIdByParams} = useProfileContext();
     const [languageOptions, setLanguageOptions] = React.useState([
         {value: 'English', label: 'English'},
@@ -19,14 +23,27 @@ export default function BasicInfo() {
     ]);
     const [showMajorInput, setShowMajorInput] = React.useState(false);
 
+    const [isRequiredFilled, setIsRequiredFilled] = React.useState(false);
+    const [canShowAlert, setCanShowAlert] = React.useState(false);
+
+    function checkRequiredFilled() {
+        const flag = userInfo.firstName !== ""
+            && userInfo.school !== ""
+            && userInfo.courseSystem !== ""
+            && userInfo.gpa !== "";
+        console.log("checkRequiredFilled", flag)
+        setIsRequiredFilled(flag);
+    }
+
     updateComponentIdByParams();
 
     return (
-        <section>
+        <section onKeyUp={checkRequiredFilled}>
             <h2>Basic Info</h2>
             <div className={"profileDiv"}>
                 <label htmlFor="firstName">First Name<RequireStar /></label>
-                <input required={true} type="text" name="firstName" id="firstName" onChange={handleProfileOnChange} value={userInfo.firstName} />
+                <input required={true} type="text" name="firstName" id="firstName" onChange={handleProfileOnChange} value={userInfo.firstName}
+                    className={`${(canShowAlert && !userInfo.firstName) && "border-2 border-red-500 animate-pulse"}`}/>
                 <label htmlFor="lastName">Last Name</label>
                 <input type="text" name="lastName" id="lastName" onChange={handleProfileOnChange} value={userInfo.lastName}/>
             </div>
@@ -50,15 +67,19 @@ export default function BasicInfo() {
             <h2>Current Education</h2>
             <div className={"profileDiv"}>
                 <label htmlFor="currentSchool" className={"w-36"}>School Name<RequireStar /></label>
-                <input required={true} className={"w-36"} type="text" name="school" id="school" onChange={handleProfileOnChange} value={userInfo.school}/>
+                <input required={true}
+                       className={`w-36 ${(canShowAlert && !userInfo.school) && "border-2 border-red-500 animate-pulse"}`}
+                       type="text" name="school" id="school" onChange={handleProfileOnChange} value={userInfo.school}/>
                 <label htmlFor="location">Location</label>
                 <input type="text" name="location" id="location" onChange={handleProfileOnChange} value={userInfo.location} className={"w-36"}/>
             </div>
             <div className={"profileDiv"}>
                 <label htmlFor="courseSystem" className={"w-36"}>Course System<RequireStar /></label>
-                <input required={true} type="text" name="courseSystem" id="courseSystem" onChange={handleProfileOnChange} className={"w-36"}/>
-                <label htmlFor="grade" className={"w-24"}>Grade</label>
-                <input required={true} type="text" name="grade" id="grade" onChange={handleProfileOnChange} className={"w-16"}/>
+                <input required={true} type="text" name="courseSystem" id="courseSystem" onChange={handleProfileOnChange}
+                       className={`w-36 ${(canShowAlert && !userInfo.courseSystem) && "border-2 border-red-500 animate-pulse"}`}/>
+                <label htmlFor="gpa" className={"w-24"}>Grade<RequireStar /></label>
+                <input required={true} type="text" name="gpa" id="gpa" onChange={handleProfileOnChange} value={userInfo.gpa}
+                       className={`w-16 ${(canShowAlert && !userInfo.gpa) && "border-2 border-red-500 animate-pulse"}`}/>
             </div>
             <div className={"profileDiv items-start"}>
                 <label htmlFor="Language" className={"w-36"}>Language</label>
@@ -115,6 +136,11 @@ export default function BasicInfo() {
                             onClick={()=>setShowMajorInput(true)}>Add more major</button>
                     </div>
                 </div>
+            </div>
+            <div className={"flex flex-row px-24 py-6"}>
+                <div className={"flex-grow"} />
+                <ProfilePreviousButton partParam={`/profile/${singlePartId}`} isActive={singlePartId !== 'basic-info'} />
+                <ProfileNextButton isRequiredFilled={isRequiredFilled} canShowAlert={canShowAlert} setCanShowAlert={setCanShowAlert} partParam={`/profile/${singlePartId}`} isActive={singlePartId !== "activities"} />
             </div>
         </section>
     );

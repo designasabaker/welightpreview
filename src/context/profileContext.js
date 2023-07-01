@@ -4,8 +4,8 @@ import {useParams} from "react-router-dom";
 
 const initialUserInfo = {
     "user_id": "3",
-    "firstName": "Tom",
-    "lastName": "Hanks",
+    "firstName": "",
+    "lastName": "",
     "name": "",
     "gender":"",
     "birthDate": "",
@@ -13,10 +13,11 @@ const initialUserInfo = {
     "activities": {
         "a": "anything in json format"
     },
+    "courseSystem":'',
     "nation": "China",
-    "school": "Wild Chicken",
+    "school": "",
     "location": "",
-    "gpa": 3.9999,
+    "gpa": '',
     "gpa_cap": 4.1,
     "major": "",
     "exam": {
@@ -57,6 +58,7 @@ export const ProfileContext = createContext({});
 function ProfileProvider({children}) {
     const [currentProfileComponentId, setCurrentProfileComponentId] = useState(-1);
     const [userInfo, setUserInfo] = useState(initialUserInfo);
+    const [isRequiredFilled, setIsRequiredFilled] = useState(true);
 
     const handleProfileOnChange = (e,name=e.target.name,value=e.target.value) => {
         e.preventDefault();
@@ -94,6 +96,8 @@ function ProfileProvider({children}) {
                 handleProfileOnChange,
                 currentProfileComponentId,
                 handleProfileComponentIdOnChange,
+                isRequiredFilled,
+                setIsRequiredFilled,
                 updateComponentIdByParams}}>
             {children}
         </ProfileContext.Provider>

@@ -11,7 +11,7 @@ export const ProfilePreviousButton = (props) => {
 
     return (
     <button
-        className={`hover:border-b hover:border-b-blue text-blue font-bold py-2 mx-4 rounded ${isActive ? "" : "opacity-50 cursor-not-allowed"}`}
+        className={`hover:border-b hover:border-b-blue text-blue font-bold py-2 mx-4 rounded ${isActive ? "" : "hidden"}`}
         onClick={()=>{
             if(isActive) {
                 navigate(previousProfileComponentPath(partParam));

@@ -17,11 +17,7 @@ const SingleProduct = () => {
                 {singlePartId === "activities" && <Activities/>}
             </div>
             <div className={"flex-grow"} />
-            <div className={"flex flex-row px-24 py-6"}>
-                <div className={"flex-grow"} />
-                <ProfilePreviousButton partParam={`/profile/${singlePartId}`} isActive={singlePartId !== 'basic-info'} />
-                <ProfileNextButton partParam={`/profile/${singlePartId}`} isActive={singlePartId !== "activities"} />
-            </div>
+
         </div>
     );
 };
