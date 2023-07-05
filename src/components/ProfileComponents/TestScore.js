@@ -48,7 +48,7 @@ function generateInitialSubScoreValidity(testType) {
 
 export default function TestScore() {
     const singlePartId = useParams().singlePartId;
-    const {handleProfileComponentIdOnChange,updateComponentIdByParams} = useProfileContext();
+    const {userInfo, setUserInfo, handleProfileComponentIdOnChange,updateComponentIdByParams} = useProfileContext();
     updateComponentIdByParams();
 
     const [tests, setTests] = useState([initialTest]);
@@ -79,6 +79,10 @@ export default function TestScore() {
         return totalScoreFlag && subScoreFlag;
     }
 
+    useEffect(() => {
+        setUserInfo({...userInfo, testScore: tests});
+    }, [tests]);
+
     function handleInputChange(index, event){
         const values = [...tests];
         values[index][event.target.name] = event.target.value;
@@ -90,7 +94,7 @@ export default function TestScore() {
     }
 
     function handleAddClick(){
-        setTests([...tests, initialTest]);
+        setTests([...tests, { ...initialTest }]);
     }
 
     function handleSubScoreChange(index, subScore, event){
@@ -163,8 +167,8 @@ export default function TestScore() {
                                         name={subScore}
                                         value={test.subScores[subScore] || ''}
                                         onChange={event => {
-                                            handleSubScoreChange(index, subScore, event);
-                                            checkLegalScore();
+                                            handleSubScoreChange(index, subScore, event); // local check and update to state
+                                            checkLegalScore(); // global check
                                         }}
                                         placeholder={``}
                                     />

@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e987fc38-2012-4a75-a744-d851f6912428" name="Changes" comment="Fix login box center issue">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ProfileComponents/ProfileNextButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProfileComponents/ProfileNextButton.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ProfileComponents/TestScore.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProfileComponents/TestScore.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -108,7 +107,7 @@
       <workItem from="1688239052833" duration="837000" />
       <workItem from="1688267004375" duration="585000" />
       <workItem from="1688322153902" duration="19000" />
-      <workItem from="1688574393406" duration="6256000" />
+      <workItem from="1688574393406" duration="6813000" />
     </task>
     <task id="LOCAL-00001" summary="Updating Profile Page">
       <created>1683435819015</created>
