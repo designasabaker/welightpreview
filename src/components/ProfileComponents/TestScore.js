@@ -5,62 +5,112 @@ import ProfilePreviousButton from "./ProfilePreviousButton";
 import ProfileNextButton from "./ProfileNextButton";
 import {useParams} from "react-router-dom";
 
+const maxScores = {
+    "四级": 710,
+    "六级": 710,
+    "TOEFL": 120,
+    "IELTS": 9,
+    "GRE": 340
+};
+const maxSubScores = {
+    "四级": 250,
+    "六级": 250,
+    "TOEFL": 30,
+    "IELTS": 9,
+    "GRE": 170
+};
+const testTypes = ["四级", "六级", "TOEFL", "IELTS","GRE"];
+const subScores = {
+    "四级": ["听力", "阅读", "写作"],
+    "六级": ["听力", "阅读", "写作"],
+    "TOEFL": ["Listening", "Reading", "Writing", "Speaking"],
+    "IELTS": ["Listening", "Reading", "Writing", "Speaking"],
+    "GRE": ["Verbal", "Quantitative", "Writing"]
+};
+
+const initialTest = {
+    testType: testTypes[0],
+    score: "",
+    isValidScore: true,
+    subScores: generateInitialSubScores(testTypes[0]),
+    isValidSubScores: generateInitialSubScoreValidity(testTypes[0])
+};
+function generateInitialSubScores(testType) {
+    const scores = {};
+    subScores[testType].forEach(subScore => scores[subScore] = "");
+    return scores;
+}
+function generateInitialSubScoreValidity(testType) {
+    const isValid = {};
+    subScores[testType].forEach(subScore => isValid[subScore] = true);
+    return isValid;
+}
+
 export default function TestScore() {
     const singlePartId = useParams().singlePartId;
     const {handleProfileComponentIdOnChange,updateComponentIdByParams} = useProfileContext();
     updateComponentIdByParams();
 
-    const testTypes = ["四级", "六级", "TOEFL", "IELTS","GRE"];
-    const subScores = {
-        "四级": ["听力", "阅读", "写作"],
-        "六级": ["听力", "阅读", "写作"],
-        "TOEFL": ["Listening", "Reading", "Writing", "Speaking"],
-        "IELTS": ["Listening", "Reading", "Writing", "Speaking"],
-        "GRE": ["Verbal", "Quantitative", "Writing"]
-    };
-    const initialTest = { testType: testTypes[0], score: "", subScores: { } };
-
-    const [tests, setTests] = useState([
-        initialTest
-    ]);
+    const [tests, setTests] = useState([initialTest]);
 
     const [isRequiredFilled, setIsRequiredFilled] = React.useState(false);
+    const [isLegalScore, setIsLegalScore] = React.useState(true);
     const [canShowAlert, setCanShowAlert] = React.useState(false);
 
     function checkRequiredFilled() {
-        const flag = tests.every((test) => {
+        const filledFlag = tests.every((test) => {
             return test.score !== "";
         });
-        console.log("checkRequiredFilled", flag)
-        setIsRequiredFilled(flag);
+        setIsRequiredFilled(filledFlag);
+        console.log("checkRequiredFilled", filledFlag)
     }
 
-    const handleInputChange = (index, event) => {
+    function checkLegalScore(){
+        const totalScoreFlag = tests.every((test) => {
+            return test.isValidScore ;
+        });
+        const subScoreFlag = tests.every((test) => {
+            return Object.values(test.isValidSubScores).every((isValidSubScore) => {
+                return isValidSubScore;
+            });
+        })
+        console.log("checkLegalScore", totalScoreFlag && subScoreFlag)
+        setIsLegalScore(totalScoreFlag && subScoreFlag);
+        return totalScoreFlag && subScoreFlag;
+    }
+
+    function handleInputChange(index, event){
         const values = [...tests];
         values[index][event.target.name] = event.target.value;
+        if (event.target.name === "testType") {
+            values[index].subScores = generateInitialSubScores(event.target.value);
+            values[index].isValidSubScores = generateInitialSubScoreValidity(event.target.value);
+        }
         setTests(values);
-    };
+    }
 
-    const handleAddClick = () => {
+    function handleAddClick(){
         setTests([...tests, initialTest]);
-    };
+    }
 
-    const handleSubScoreChange = (index, subScore, event) => {
+    function handleSubScoreChange(index, subScore, event){
         const values = [...tests];
-        values[index].subScores[subScore] = event.target.value;
+        const thisTest = values[index];
+        thisTest.subScores[subScore] = event.target.value;
+        thisTest.isValidSubScores[subScore] = event.target.value <= maxSubScores[tests[index].testType];
         setTests(values);
-    };
+    }
 
-    const handleRemoveClick = index => {
+    function handleRemoveClick(index){
         const values = [...tests];
         values.splice(index, 1);
         setTests(values);
-    };
+    }
 
-    const handleSubmit = event => {
+    function handleSubmit(event){
         event.preventDefault();
         console.log(tests);
-    };
+    }
 
     return (
         <section onKeyUp={checkRequiredFilled}>
@@ -108,10 +158,14 @@ export default function TestScore() {
                                     <input
                                         key={subScore}
                                         className={"w-24 mr-6"}
+                                        className={tests[index].isValidSubScores[subScore] ? "" : "border-2 border-red-500 animate-pulse"}  // Apply a red border if the score is not valid.
                                         type="number"
                                         name={subScore}
                                         value={test.subScores[subScore] || ''}
-                                        onChange={event => handleSubScoreChange(index, subScore, event)}
+                                        onChange={event => {
+                                            handleSubScoreChange(index, subScore, event);
+                                            checkLegalScore();
+                                        }}
                                         placeholder={``}
                                     />
                                 </>
@@ -125,18 +179,19 @@ export default function TestScore() {
                         </button>
                     </div>
                 ))}
-                <button
-                    className={"w-full text-center"}
+                <div className={"text-center"}>
+                    <button
                     type="button"
                     onClick={() => handleAddClick()}>
-                    Add more tests
-                </button>
+                        Add more tests
+                    </button>
+                </div>
                 {/*<button type="submit">Submit</button>*/}
             </form>
             <div className={"flex flex-row px-24 py-6"}>
                 <div className={"flex-grow"} />
                 <ProfilePreviousButton partParam={`/profile/${singlePartId}`} isActive={singlePartId !== 'basic-info'} />
-                <ProfileNextButton isRequiredFilled={isRequiredFilled} canShowAlert={canShowAlert} setCanShowAlert={setCanShowAlert} partParam={`/profile/${singlePartId}`} isActive={singlePartId !== "activities"} />
+                <ProfileNextButton isLegalScore={isLegalScore} isRequiredFilled={isRequiredFilled} canShowAlert={canShowAlert} setCanShowAlert={setCanShowAlert} partParam={`/profile/${singlePartId}`} isActive={singlePartId !== "activities"} />
             </div>
         </section>
     )
