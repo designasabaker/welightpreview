@@ -12,7 +12,7 @@ export const ProfileSharedLayout = () => {
                         <ProfileNavbar/>
                         <div className={"flex flex-col h-full"}>
                             <div className={"flex-grow bg-gray-100 px-6 py-6 m-0"}>
-                                <div className={"bg-white px-3"}>
+                                <div className={"bg-white px-3 overflow-auto"}>
                                     <Outlet />
                                 </div>
                             </div>
