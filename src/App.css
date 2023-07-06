@@ -44,6 +44,26 @@ input[type="number"]{
     -moz-appearance: textfield;
 }
 
+.pyramid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.layer {
+  cursor: pointer;
+}
+
+.pyramid-svg{
+    transform:translateY(-17rem);
+  scale: 0.5;
+}
+
+.pyramid-svg text {
+  pointer-events: none;
+}
+
+
 @layer base{
   h2{
     @apply text-xl font-bold text-gray-800 mt-3 py-3;
