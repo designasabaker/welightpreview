@@ -14,22 +14,29 @@ const initialState = {
     isRequiredFilled: false,
     canShowAlert: false,
 };
+const ACTIONS = {
+    SET_AWARD: 'SET_AWARD',
+    ADD_AWARD: 'ADD_AWARD',
+    REMOVE_AWARD: 'REMOVE_AWARD',
+    SET_IS_REQUIRED_FILLED: 'SET_IS_REQUIRED_FILLED',
+    SET_CAN_SHOW_ALERT: 'SET_CAN_SHOW_ALERT',
+}
 
 function awardsReducer(state, action) {
     switch(action.type) {
-        case 'SET_AWARD':
+        case ACTIONS.SET_AWARD:
             return {
                 ...state,
                 awards: state.awards.map((award, index) => index === action.index ? { ...award, [action.name]: action.value } : award) };
-        case 'ADD_AWARD':
+        case ACTIONS.ADD_AWARD:
             return { ...state, awards: [...state.awards, {...initialAward}] };
-        case 'REMOVE_AWARD':
+        case ACTIONS.REMOVE_AWARD:
             return { ...state, awards: state.awards.filter((_, index) => index !== action.index) };
-        case 'SET_IS_REQUIRED_FILLED':
+        case ACTIONS.SET_IS_REQUIRED_FILLED:
             return {
                 ...state,
                 isRequiredFilled: state.awards.every((award) => award.awardName !== "" && award.grade !== "" && award.type !== "" && award.subject !== "" && award.level !== "") };
-        case 'SET_CAN_SHOW_ALERT':
+        case ACTIONS.SET_CAN_SHOW_ALERT:
             return { ...state, canShowAlert: true };
         default:
             return state;
@@ -57,12 +64,12 @@ export default function Awards() {
 
     function handleInputChange(index, event) {
         dispatch({
-            type: 'SET_AWARD',
+            type: ACTIONS.SET_AWARD,
             index: index, name: event.target.name, value: event.target.value });
     }
 
     function handleAddClick() {
-        dispatch({ type: 'ADD_AWARD' });
+        dispatch({ type: ACTIONS.ADD_AWARD });
     }
 
     function handleRemoveClick(index) {
@@ -75,7 +82,7 @@ export default function Awards() {
     }
 
     function handleLevelChange(index, newLevel) {
-        dispatch({ type: 'SET_AWARD', index: index, name: 'level', value: newLevel });
+        dispatch({ type: ACTIONS.SET_AWARD, index: index, name: 'level', value: newLevel });
     }
 
     function setCanShowAlert() {

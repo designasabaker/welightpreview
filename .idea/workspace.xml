@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e987fc38-2012-4a75-a744-d851f6912428" name="Changes" comment="Fix login box center issue">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ProfileComponents/Activities.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProfileComponents/Activities.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ProfileComponents/Awards.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProfileComponents/Awards.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -44,7 +43,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/welight/Frontend/public&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/udemy/jsmilga/contentful&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -111,7 +110,10 @@
       <workItem from="1688322153902" duration="19000" />
       <workItem from="1688574393406" duration="7420000" />
       <workItem from="1688584829629" duration="35000" />
-      <workItem from="1688665841590" duration="8742000" />
+      <workItem from="1688665841590" duration="9198000" />
+      <workItem from="1688682012042" duration="161000" />
+      <workItem from="1688749079504" duration="645000" />
+      <workItem from="1688765315249" duration="1960000" />
     </task>
     <task id="LOCAL-00001" summary="Updating Profile Page">
       <created>1683435819015</created>
