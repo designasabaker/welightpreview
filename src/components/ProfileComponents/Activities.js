@@ -32,7 +32,8 @@ function activitiesReducer(state, action) {
             return { ...state, activities: state.activities.filter((_, index) => index !== action.index) };
         case 'SET_IS_REQUIRED_FILLED':
             return { ...state, isRequiredFilled: state.activities.every(activity => activity.activityType && activity.activityName && activity.level) };
-            default:
+        default:
+            console.error('Invalid action type')
             return state;
     }
 }
@@ -66,7 +67,7 @@ export const Activities = () => {
     };
 
     function handleLevelChange(index, newLevel) {
-        dispatch({ type: ACTIONS.SET_AWARD, index: index, name: 'level', value: newLevel });
+        dispatch({ type: ACTIONS.SET_ACTIVITY, index: index, name: 'level', value: newLevel });
     }
 
     function checkRequiredFilled() {
