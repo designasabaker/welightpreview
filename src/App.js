@@ -10,6 +10,7 @@ import Pricing from './pages/Pricing';
 import AppProvider from "./context/appContext";
 import ProfileSharedLayout from "./pages/ProfileSharedLayout";
 import SingleProfilePart from "./pages/SingleProfilePart";
+import AppFooter from "./components/AppFooter";
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
             </Route>
             <Route path="/pricing" element={<Pricing/>} />
           </Routes>
+          <AppFooter />
         </BrowserRouter>
       </AppProvider>
   );

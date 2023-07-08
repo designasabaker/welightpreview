@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e987fc38-2012-4a75-a744-d851f6912428" name="Changes" comment="Fix login box center issue">
+      <change afterPath="$PROJECT_DIR$/src/components/AppFooter.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ProfileComponents/Activities.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProfileComponents/Activities.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +113,8 @@
       <workItem from="1688665841590" duration="9198000" />
       <workItem from="1688682012042" duration="161000" />
       <workItem from="1688749079504" duration="645000" />
-      <workItem from="1688765315249" duration="2327000" />
+      <workItem from="1688765315249" duration="3003000" />
+      <workItem from="1688849081278" duration="190000" />
     </task>
     <task id="LOCAL-00001" summary="Updating Profile Page">
       <created>1683435819015</created>
