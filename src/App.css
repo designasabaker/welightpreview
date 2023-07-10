@@ -55,8 +55,10 @@ input[type="number"]{
 }
 
 .pyramid-svg{
-    transform:translateY(-17rem);
-  scale: 0.5;
+  transform:translate(6rem,-2rem);
+  border: none;
+  width: 220px;
+  height: 220px;
 }
 
 .pyramid-svg text {
