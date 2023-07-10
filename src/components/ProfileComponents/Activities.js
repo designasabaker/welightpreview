@@ -4,17 +4,24 @@ import { AiOutlineArrowUp, AiOutlineArrowDown } from "react-icons/ai";
 import { FiArrowUpCircle, FiArrowDownCircle } from "react-icons/fi";
 import {useProfileContext} from "../../context/profileContext";
 import RequireStar from "../RequireStar";
+import ProfilePreviousButton from "./ProfilePreviousButton";
+import ProfileNextButton from "./ProfileNextButton";
+import ProfileSubmitButton from "./ProfileSubmitButton";
 
 const slate = '#C0C2C9';
 const initialActivity = { activityType: "", activityName: "", details: "", level: "" };
 const initialState = {
     activities: [initialActivity],
+    isRequiredFilled: false,
+    canShowAlert: false,
 };
 
 const ACTIONS = {
     SET_ACTIVITY: 'SET_ACTIVITY',
     ADD_ACTIVITY: 'ADD_ACTIVITY',
     REMOVE_ACTIVITY: 'REMOVE_ACTIVITY',
+    SET_IS_REQUIRED_FILLED: 'SET_IS_REQUIRED_FILLED',
+    SET_CAN_SHOW_ALERT: 'SET_CAN_SHOW_ALERT',
 }
 
 function activitiesReducer(state, action) {
@@ -30,8 +37,11 @@ function activitiesReducer(state, action) {
             return { ...state, activities: [...state.activities, { ...initialActivity }] };
         case ACTIONS.REMOVE_ACTIVITY:
             return { ...state, activities: state.activities.filter((_, index) => index !== action.index) };
-        case 'SET_IS_REQUIRED_FILLED':
-            return { ...state, isRequiredFilled: state.activities.every(activity => activity.activityType && activity.activityName && activity.level) };
+        case ACTIONS.SET_IS_REQUIRED_FILLED:
+            const newState = { ...state, isRequiredFilled: state.activities.every(activity => activity.activityType && activity.activityName && activity.level) };
+            return newState;
+        case ACTIONS.SET_CAN_SHOW_ALERT:
+            return { ...state, canShowAlert: true };
         default:
             console.error('Invalid action type')
             return state;
@@ -71,16 +81,20 @@ export const Activities = () => {
     }
 
     function checkRequiredFilled() {
-        dispatch({ type: 'SET_IS_REQUIRED_FILLED'});
+        dispatch({ type: ACTIONS.SET_IS_REQUIRED_FILLED});
+    }
+
+    function setCanShowAlert() {
+        dispatch({ type: 'SET_CAN_SHOW_ALERT' });
     }
 
     return (
-        <section onKeyUp={checkRequiredFilled}>
+        <section onKeyUp={checkRequiredFilled} onMouseUp={checkRequiredFilled}>
             <h2>Activities</h2>
             <form onSubmit={handleSubmit}>
                 {state.activities.map((activity, index) => (
-                <div className={'relative pb-6'}>
-                    <div key={index}  className={'pr-6 grid grid-cols-[2fr_1fr]'}>
+                <div key={index} className={'relative pb-6'}>
+                    <div className={'pr-6 grid grid-cols-[2fr_1fr]'}>
                         {/* col1 */}
                         <div className={'border-r'}>
                             <div className={"profileDiv"}>
@@ -116,7 +130,7 @@ export const Activities = () => {
                         </div>
                         {/* col2 level */}
                         <div className="relative h-60">
-                            <label htmlFor={`level${index}`}>Level</label>
+                            <label htmlFor={`level${index}`}>Level<RequireStar /></label>
                             <div>
                                 <span className="pl-12">{activity.level || 'N/A'}</span>
                             </div>
@@ -199,6 +213,22 @@ export const Activities = () => {
                     </button>
                 </div>
             </form>
+            <div className={"flex flex-row px-24 py-6"}>
+                <div className={"flex-grow"} />
+                <ProfilePreviousButton partParam={`/profile/${singlePartId}`} isActive={singlePartId !== 'basic-info'} />
+                {/*<ProfileNextButton*/}
+                {/*    isRequiredFilled={state.isRequiredFilled}*/}
+                {/*    canShowAlert={state.canShowAlert}*/}
+                {/*    setCanShowAlert={setCanShowAlert}*/}
+                {/*    partParam={`/profile/${singlePartId}`}*/}
+                {/*    isActive={singlePartId !== "activities"} />*/}
+                <ProfileSubmitButton
+                    canShowAlert={state.canShowAlert}
+                    setCanShowAlert={setCanShowAlert}
+                    isRequiredFilled={state.isRequiredFilled}
+                    checkRequiredFilled={checkRequiredFilled}
+                />
+            </div>
         </section>
     );
 };

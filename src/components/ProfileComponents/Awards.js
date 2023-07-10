@@ -95,7 +95,7 @@ export default function Awards() {
     }, [state.awards]);
 
     return (
-        <section onKeyUp={checkRequiredFilled}>
+        <section onKeyUp={checkRequiredFilled} onMouseUp={checkRequiredFilled}>
             <h2>Awards</h2>
             <form onSubmit={handleSubmit}>
                 {state.awards.map((test, index) => (
