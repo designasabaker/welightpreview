@@ -9,11 +9,7 @@ import {FiArrowUpCircle, FiArrowDownCircle} from "react-icons/fi";
 
 const slate = '#C0C2C9';
 const initialAward = { awardName: "", grade: "", type: "", subject: "", level: "" };
-const initialState = {
-    awards: [initialAward],
-    isRequiredFilled: false,
-    canShowAlert: false,
-};
+
 const ACTIONS = {
     SET_AWARD: 'SET_AWARD',
     ADD_AWARD: 'ADD_AWARD',
@@ -47,7 +43,18 @@ export default function Awards() {
     const singlePartId = useParams().singlePartId;
     const {userInfo, setUserInfo, handleProfileComponentIdOnChange,updateComponentIdByParams} = useProfileContext();
     updateComponentIdByParams();
+
+    const initialState = {
+        awards:  Array.isArray(userInfo.awards) ? userInfo.awards : [initialAward],
+        isRequiredFilled: false,
+        canShowAlert: false,
+    };
+
     const [state, dispatch] = useReducer(awardsReducer, initialState);
+
+    useEffect(()=>{
+        setUserInfo({...userInfo, awards: state.awards});
+    },[state.awards])
 
     function checkRequiredFilled() {
         // any false

@@ -3,6 +3,7 @@ import {Activities, Awards, BasicInfo, TestScore} from "../components/ProfileCom
 import React from "react";
 import ProfileNextButton from "../components/ProfileComponents/ProfileNextButton";
 import ProfilePreviousButton from "../components/ProfileComponents/ProfilePreviousButton";
+import InfoSummary from "../components/ProfileComponents/InfoSummary";
 
 const SingleProduct = () => {
     const singlePartId = useParams().singlePartId;
@@ -15,6 +16,7 @@ const SingleProduct = () => {
                 {singlePartId === "test-score" && <TestScore/>}
                 {singlePartId === "awards" && <Awards/>}
                 {singlePartId === "activities" && <Activities/>}
+                {singlePartId === "info-summary" && <InfoSummary/>}
             </div>
             <div className={"flex-grow"} />
 

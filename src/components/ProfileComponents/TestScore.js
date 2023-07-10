@@ -128,7 +128,7 @@ export default function TestScore() {
     updateComponentIdByParams();
 
     const initialState = {
-        tests: [initialTest],
+        tests: userInfo.testScore || [initialTest],
         isRequiredFilled: false,
         isLegalScore: true,
         canShowAlert: false,
@@ -138,7 +138,7 @@ export default function TestScore() {
 
     useEffect(() => {
         setUserInfo({ ...userInfo, testScore: state.tests });
-    }, [state.tests]);
+    }, [state]);
 
     function handleTestTypeChange(index, event) {
         dispatch({ type: ACTIONS.SET_TEST_TYPE, index, testType: event.target.value });

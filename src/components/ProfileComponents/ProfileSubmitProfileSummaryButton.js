@@ -2,8 +2,8 @@ import {useNavigate} from "react-router-dom";
 import {useContext} from "react";
 import {ProfileContext} from "../../context/profileContext";
 
-export default function ProfileSubmitButton(props) {
-    const { userInfo } = useContext(ProfileContext);
+export default function ProfileSubmitProfileSummaryButton(props) {
+    const { userInfo, setShowSummary } = useContext(ProfileContext);
     const {isActive = true, partParam = '', canShowAlert, isRequiredFilled, setCanShowAlert, checkRequiredFilled, isLegalScore = true} = props;
     const navigate = useNavigate();
 
@@ -15,9 +15,12 @@ export default function ProfileSubmitButton(props) {
                 className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ${isActive ? "" : "opacity-50 cursor-not-allowed"}`}
                 onClick={()=>{
                     setCanShowAlert(true);
-                    console.log(userInfo);
+                    if (isRequiredFilled && isLegalScore) {
+                        setShowSummary(true);
+                        navigate(`/profile/info-summary`);
+                    }
                 }}>
-                Submit
+                View Summary
             </button>
         </div>
     )

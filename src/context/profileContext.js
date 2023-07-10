@@ -29,7 +29,9 @@ export const navLinks = [
     { id:1, title: 'Basic Info', path: '/profile/basic-info' }, // abs path
     { id:2, title: 'Test Score', path: '/profile/test-score' },
     { id:3, title: 'Awards', path: '/profile/awards' },
-    { id:4, title: 'Activities', path: '/profile/activities' }];
+    { id:4, title: 'Activities', path: '/profile/activities' },
+    { id:5, title: 'Summary', path: '/profile/info-summary' }
+];
 
 const nextProfileComponentPath = (currentProfileComponentPath) => {
     const index = navLinks.findIndex((link) => link.path === currentProfileComponentPath);
@@ -59,6 +61,7 @@ function ProfileProvider({children}) {
     const [currentProfileComponentId, setCurrentProfileComponentId] = useState(-1);
     const [userInfo, setUserInfo] = useState(initialUserInfo);
     const [isRequiredFilled, setIsRequiredFilled] = useState(true);
+    const [showSummary, setShowSummary] = useState(false); // show summary page after submitting
 
     const handleProfileOnChange = (e,name=e.target.name,value=e.target.value) => {
         e.preventDefault();
@@ -98,7 +101,9 @@ function ProfileProvider({children}) {
                 handleProfileComponentIdOnChange,
                 isRequiredFilled,
                 setIsRequiredFilled,
-                updateComponentIdByParams}}>
+                updateComponentIdByParams,
+                showSummary,
+                setShowSummary,}}>
             {children}
         </ProfileContext.Provider>
     );

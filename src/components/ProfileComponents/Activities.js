@@ -6,15 +6,10 @@ import {useProfileContext} from "../../context/profileContext";
 import RequireStar from "../RequireStar";
 import ProfilePreviousButton from "./ProfilePreviousButton";
 import ProfileNextButton from "./ProfileNextButton";
-import ProfileSubmitButton from "./ProfileSubmitButton";
+import ProfileSubmitProfileSummaryButton from "./ProfileSubmitProfileSummaryButton";
 
 const slate = '#C0C2C9';
 const initialActivity = { activityType: "", activityName: "", details: "", level: "" };
-const initialState = {
-    activities: [initialActivity],
-    isRequiredFilled: false,
-    canShowAlert: false,
-};
 
 const ACTIONS = {
     SET_ACTIVITY: 'SET_ACTIVITY',
@@ -52,7 +47,18 @@ export const Activities = () => {
     const { singlePartId } = useParams();
     const {userInfo, setUserInfo, handleProfileComponentIdOnChange,updateComponentIdByParams} = useProfileContext();
     updateComponentIdByParams();
+
+    const initialState = {
+        activities: Array.isArray(userInfo.activities) ? userInfo.activities : [initialActivity],
+        isRequiredFilled: false,
+        canShowAlert: false,
+    };
+
     const [state, dispatch] = useReducer(activitiesReducer, initialState);
+
+    useEffect(() => {
+        setUserInfo({...userInfo, activities: state.activities});
+    }, [state.activities]);
 
     const handleInputChange = (index, event) => {
         dispatch({
@@ -222,7 +228,7 @@ export const Activities = () => {
                 {/*    setCanShowAlert={setCanShowAlert}*/}
                 {/*    partParam={`/profile/${singlePartId}`}*/}
                 {/*    isActive={singlePartId !== "activities"} />*/}
-                <ProfileSubmitButton
+                <ProfileSubmitProfileSummaryButton
                     canShowAlert={state.canShowAlert}
                     setCanShowAlert={setCanShowAlert}
                     isRequiredFilled={state.isRequiredFilled}
