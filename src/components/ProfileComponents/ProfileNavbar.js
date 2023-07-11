@@ -16,7 +16,7 @@ export default function ProfileNavbar() {
                     else if(link.title === "Summary" && showSummary){
                         return (
                             <>
-                                <hr className="border-gray-300 my-2"/>
+                                <hr className="border-sky-50 my-2"/>
                                 <NavLink
                                     className={`text-md  hover:text-slate-600 py-2 ` +
                                         `${currentProfileComponentId === link.id ? "text-black font-bold" : "font-thin text-slate-400"}`}

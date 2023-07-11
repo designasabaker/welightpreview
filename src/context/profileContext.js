@@ -1,8 +1,10 @@
 import React, {createContext, useContext, useState} from "react";
 import {useParams} from "react-router-dom";
+import {LOCALSTORAGE_KEY} from "../constants";
 
+const storedUserInfo = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));
 
-const initialUserInfo = {
+const initialUserInfo = storedUserInfo ? storedUserInfo : {
     "user_id": "3",
     "firstName": "",
     "lastName": "",
@@ -11,7 +13,7 @@ const initialUserInfo = {
     "birthDate": "",
     "age": 1,
     "activities": {
-        "a": "anything in json format"
+        "a": ""
     },
     "courseSystem":'',
     "nation": "China",
@@ -21,7 +23,7 @@ const initialUserInfo = {
     "gpa_cap": 4.1,
     "major": "",
     "exam": {
-        "a": "anything in json format"
+        "test": "0"
     },
     "language": "",
 }
@@ -57,11 +59,20 @@ const previousProfileComponentPath = (currentProfileComponentPath) => {
 
 export const ProfileContext = createContext({});
 
+
 function ProfileProvider({children}) {
     const [currentProfileComponentId, setCurrentProfileComponentId] = useState(-1);
     const [userInfo, setUserInfo] = useState(initialUserInfo);
     const [isRequiredFilled, setIsRequiredFilled] = useState(true);
     const [showSummary, setShowSummary] = useState(false); // show summary page after submitting
+
+    const setLocalStorage = () => {
+        localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(userInfo));
+        alert("Saved to local storage")
+    }
+    const getLocalStorage = () => {
+        return JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));
+    }
 
     const handleProfileOnChange = (e,name=e.target.name,value=e.target.value) => {
         e.preventDefault();
@@ -93,6 +104,8 @@ function ProfileProvider({children}) {
         <ProfileContext.Provider
             value={{userInfo,
                 setUserInfo,
+                setLocalStorage,
+                getLocalStorage,
                 navLinks,
                 nextProfileComponentPath,
                 previousProfileComponentPath,

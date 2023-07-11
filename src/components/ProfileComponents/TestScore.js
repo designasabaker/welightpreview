@@ -4,6 +4,7 @@ import RequireStar from "../RequireStar";
 import ProfilePreviousButton from "./ProfilePreviousButton";
 import ProfileNextButton from "./ProfileNextButton";
 import { useParams } from "react-router-dom";
+import SaveAsDraftBtn from "./SaveAsDraftBtn";
 
 const maxScores = {
     "四级": 710,
@@ -254,6 +255,7 @@ export default function TestScore() {
             </form>
             <div className={"flex flex-row px-24 py-6"}>
                 <div className={"flex-grow"} />
+                <SaveAsDraftBtn />
                 <ProfilePreviousButton partParam={`/profile/${singlePartId}`} isActive={singlePartId !== 'basic-info'} />
                 <ProfileNextButton
                     isLegalScore={state.isLegalScore}

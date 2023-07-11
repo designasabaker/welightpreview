@@ -6,6 +6,7 @@ import RequireStar from "../RequireStar";
 import ProfilePreviousButton from "./ProfilePreviousButton";
 import ProfileNextButton from "./ProfileNextButton";
 import {useParams} from "react-router-dom";
+import SaveAsDraftBtn from "./SaveAsDraftBtn";
 
 export default function BasicInfo() {
     const singlePartId = useParams().singlePartId;
@@ -139,8 +140,14 @@ export default function BasicInfo() {
             </div>
             <div className={"flex flex-row px-24 py-6"}>
                 <div className={"flex-grow"} />
+                <SaveAsDraftBtn />
                 <ProfilePreviousButton partParam={`/profile/${singlePartId}`} isActive={singlePartId !== 'basic-info'} />
-                <ProfileNextButton isRequiredFilled={isRequiredFilled} canShowAlert={canShowAlert} setCanShowAlert={setCanShowAlert} partParam={`/profile/${singlePartId}`} isActive={singlePartId !== "activities"} />
+                <ProfileNextButton
+                    isRequiredFilled={isRequiredFilled}
+                    canShowAlert={canShowAlert}
+                    setCanShowAlert={setCanShowAlert}
+                    partParam={`/profile/${singlePartId}`}
+                    isActive={singlePartId !== "activities"} />
             </div>
         </section>
     );

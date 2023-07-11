@@ -4,6 +4,7 @@ import React from "react";
 import ProfileNextButton from "../components/ProfileComponents/ProfileNextButton";
 import ProfilePreviousButton from "../components/ProfileComponents/ProfilePreviousButton";
 import InfoSummary from "../components/ProfileComponents/InfoSummary";
+import SaveAsDraftBtn from "../components/ProfileComponents/SaveAsDraftBtn";
 
 const SingleProduct = () => {
     const singlePartId = useParams().singlePartId;

@@ -6,6 +6,7 @@ import ProfileNextButton from "./ProfileNextButton";
 import {useParams} from "react-router-dom";
 import {AiOutlineArrowUp, AiOutlineArrowDown} from "react-icons/ai";
 import {FiArrowUpCircle, FiArrowDownCircle} from "react-icons/fi";
+import SaveAsDraftBtn from "./SaveAsDraftBtn";
 
 const slate = '#C0C2C9';
 const initialAward = { awardName: "", grade: "", type: "", subject: "", level: "" };
@@ -242,6 +243,7 @@ export default function Awards() {
             </form>
             <div className={"flex flex-row px-24 py-6"}>
                 <div className={"flex-grow"} />
+                <SaveAsDraftBtn />
                 <ProfilePreviousButton partParam={`/profile/${singlePartId}`} isActive={singlePartId !== 'basic-info'} />
                 <ProfileNextButton
                     isRequiredFilled={state.isRequiredFilled}

@@ -5,12 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e987fc38-2012-4a75-a744-d851f6912428" name="Changes" comment="Fix login box center issue">
-      <change afterPath="$PROJECT_DIR$/src/components/ProfileComponents/InfoSummary.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/ProfileComponents/SaveAsDraftBtn.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/constants/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/constants/localstorage.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ProfileComponents/Activities.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProfileComponents/Activities.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ProfileComponents/Awards.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProfileComponents/Awards.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ProfileComponents/BasicInfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProfileComponents/BasicInfo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ProfileComponents/InfoSummary.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProfileComponents/InfoSummary.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ProfileComponents/ProfileNavbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProfileComponents/ProfileNavbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ProfileComponents/ProfileSubmitButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProfileComponents/ProfileSubmitProfileSummaryButton.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ProfileComponents/TestScore.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ProfileComponents/TestScore.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/context/profileContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/profileContext.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/SingleProfilePart.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SingleProfilePart.js" afterDir="false" />
@@ -55,7 +59,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Applications/IntelliJ IDEA.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2022.3.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -122,7 +126,8 @@
       <workItem from="1688765315249" duration="3003000" />
       <workItem from="1688849081278" duration="1145000" />
       <workItem from="1688854797064" duration="16000" />
-      <workItem from="1689013211077" duration="8185000" />
+      <workItem from="1689013211077" duration="15611000" />
+      <workItem from="1689038939552" duration="7000" />
     </task>
     <task id="LOCAL-00001" summary="Updating Profile Page">
       <created>1683435819015</created>

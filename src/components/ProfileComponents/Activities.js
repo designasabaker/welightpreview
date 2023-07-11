@@ -7,6 +7,7 @@ import RequireStar from "../RequireStar";
 import ProfilePreviousButton from "./ProfilePreviousButton";
 import ProfileNextButton from "./ProfileNextButton";
 import ProfileSubmitProfileSummaryButton from "./ProfileSubmitProfileSummaryButton";
+import SaveAsDraftBtn from "./SaveAsDraftBtn";
 
 const slate = '#C0C2C9';
 const initialActivity = { activityType: "", activityName: "", details: "", level: "" };
@@ -221,13 +222,8 @@ export const Activities = () => {
             </form>
             <div className={"flex flex-row px-24 py-6"}>
                 <div className={"flex-grow"} />
+                <SaveAsDraftBtn />
                 <ProfilePreviousButton partParam={`/profile/${singlePartId}`} isActive={singlePartId !== 'basic-info'} />
-                {/*<ProfileNextButton*/}
-                {/*    isRequiredFilled={state.isRequiredFilled}*/}
-                {/*    canShowAlert={state.canShowAlert}*/}
-                {/*    setCanShowAlert={setCanShowAlert}*/}
-                {/*    partParam={`/profile/${singlePartId}`}*/}
-                {/*    isActive={singlePartId !== "activities"} />*/}
                 <ProfileSubmitProfileSummaryButton
                     canShowAlert={state.canShowAlert}
                     setCanShowAlert={setCanShowAlert}

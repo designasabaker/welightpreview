@@ -32,8 +32,15 @@ h1 {
   font-weight: 700;
 }
 
-h2,label{
+h2,label,p, span{
   font-family: "Inter", sans-serif;
+  font-weight: 400;
+}
+
+h4{
+  font-family: "Roboto", sans-serif;
+  padding: 0.5rem 0;
+  font-weight: 700;
 }
 
 input::-webkit-outer-spin-button,input::-webkit-inner-spin-button{
